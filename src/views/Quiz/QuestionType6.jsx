@@ -102,6 +102,7 @@ function QuestionType6(props) {
                   <AnswerButton title="D. Trump" />
                 </GridItem>
               </GridContainer>
+              <CardFooter stats />
               <GridContainer>
                 <GridItem xs={12} sm={12} md={12}>
                   <p className={classes.questionTitle}>
@@ -125,6 +126,7 @@ function QuestionType6(props) {
                   <AnswerButton title="D. Trump" />
                 </GridItem>
               </GridContainer>
+              <CardFooter stats />
               <GridContainer>
                 <GridItem xs={12} sm={12} md={12}>
                   <p className={classes.questionTitle}>
