@@ -8,6 +8,22 @@ const dashboardStyle = {
     width: "16px",
     height: "16px"
   },
+  profileCard: {
+    marginLeft: "160px",
+    marginRight: "160px"
+  },
+  smallVioletGreyDot: {
+    width: "10px",
+    height: "10px",
+    cornerRadius: "50%",
+    backgroundColor: "#BC9CFF"
+  },
+  smallYellowGreyDot: {
+    width: "10px",
+    height: "10px",
+    cornerRadius: "50%",
+    backgroundColor: "#FFE39C"
+  },
   stats: {
     color: "#999999",
     display: "inline-flex",
@@ -48,15 +64,44 @@ const dashboardStyle = {
     color: "#3C4858",
     marginTop: "0px",
     minHeight: "auto",
-    fontWeight: "300",
+    fontWeight: "400",
     fontFamily: "'Roboto', 'Helvetica', 'Arial', sans-serif",
     marginBottom: "3px",
     textDecoration: "none",
+    textAlign: "left",
     "& small": {
       color: "#777",
       fontWeight: "400",
-      lineHeight: "1"
+      lineHeight: "1",
+      fontStyle: "normal"
     }
+  },
+  profileTitle: {
+    color: "#0099DA",
+    marginTop: "0px",
+    minHeight: "auto",
+    fontWeight: "400",
+    fontFamily: "'Roboto', 'Helvetica', 'Arial', sans-serif",
+    marginBottom: "3px",
+    textDecoration: "none",
+    fontStyle: "italic",
+    textAlign: "left",
+    "& small": {
+      color: "#777",
+      fontWeight: "400",
+      lineHeight: "1",
+      fontStyle: "normal"
+    }
+  },
+  cardSmallInfo: {
+    color: "#3C4858",
+    marginTop: "0px",
+    minHeight: "auto",
+    fontWeight: "400",
+    fontFamily: "'Roboto', 'Helvetica', 'Arial', sans-serif",
+    marginBottom: "3px",
+    textDecoration: "none",
+    textAlign: "left",
   },
   cardTitleWhite: {
     color: "#FFFFFF",

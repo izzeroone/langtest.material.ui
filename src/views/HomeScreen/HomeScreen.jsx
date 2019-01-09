@@ -6,14 +6,8 @@ import ChartistGraph from "react-chartist";
 import withStyles from "@material-ui/core/styles/withStyles";
 import Icon from "@material-ui/core/Icon";
 // @material-ui/icons
-import Store from "@material-ui/icons/Store";
-import Warning from "@material-ui/icons/Warning";
-import DateRange from "@material-ui/icons/DateRange";
-import LocalOffer from "@material-ui/icons/LocalOffer";
-import Update from "@material-ui/icons/Update";
 import ArrowUpward from "@material-ui/icons/ArrowUpward";
 import AccessTime from "@material-ui/icons/AccessTime";
-import Accessibility from "@material-ui/icons/Accessibility";
 import BugReport from "@material-ui/icons/BugReport";
 import Code from "@material-ui/icons/Code";
 import Cloud from "@material-ui/icons/Cloud";
@@ -29,9 +23,11 @@ import CardHeader from "components/Card/CardHeader.jsx";
 import CardIcon from "components/Card/CardIcon.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import CardFooter from "components/Card/CardFooter.jsx";
-
+import { Progress } from "react-sweet-progress";
 import { bugs, website, server } from "variables/general.jsx";
-
+import CardAvatar from "components/Card/CardAvatar.jsx";
+import avatar from "assets/img/faces/marc.jpg";
+import Button from "components/CustomButtons/Button.jsx";
 import {
   dailySalesChart,
   emailsSubscriptionChart,
@@ -39,7 +35,8 @@ import {
 } from "variables/charts.jsx";
 
 import dashboardStyle from "assets/jss/material-dashboard-react/views/dashboardStyle.jsx";
-
+import { Grid } from "@material-ui/core";
+import classNames from "classnames";
 class HomeScreen extends React.Component {
   state = {
     value: 0
@@ -55,78 +52,221 @@ class HomeScreen extends React.Component {
     const { classes } = this.props;
     return (
       <div>
+        <CardAvatar profile>
+          <a href="#pablo" onClick={e => e.preventDefault()}>
+            <img src={avatar} alt="..." />
+          </a>
+        </CardAvatar>
+        <Grid className={classes.profileCard}>
+          <Card profile>
+            <Grid
+              container
+              direction="row"
+              justify="center"
+              alignItems="center"
+            >
+              <GridItem xs={12} sm={12} md={8}>
+                <CardBody>
+                  <h3 className={classes.profileTitle}>Your result</h3>
+                  <p className={classes.cardSmallInfo}>
+                    Time spend: 1212 minutes
+                  </p>
+                  <p className={classes.cardSmallInfo}>Question: 12 minutes</p>
+                </CardBody>
+              </GridItem>
+              <GridItem xs={12} sm={12} md={4}>
+                <Button color="danger" round size="lg">
+                  <Icon style={{ marginRight: "20px" }}>done</Icon>
+                  BEGIN TEST
+                </Button>
+              </GridItem>
+            </Grid>
+          </Card>
+        </Grid>
         <GridContainer>
-          <GridItem xs={12} sm={6} md={3}>
+          <GridItem xs={12} sm={6} md={4}>
             <Card>
-              <CardHeader color="warning" stats icon>
-                <CardIcon color="warning">
-                  <Icon>content_copy</Icon>
+              <CardHeader color="primary" stats icon>
+                <CardIcon color="primary">
+                  <Icon>photo</Icon>
                 </CardIcon>
-                <p className={classes.cardCategory}>Used Space</p>
-                <h3 className={classes.cardTitle}>
-                  49/50 <small>GB</small>
-                </h3>
               </CardHeader>
-              <CardFooter stats>
-                <div className={classes.stats}>
-                  <Danger>
-                    <Warning />
-                  </Danger>
-                  <a href="#pablo" onClick={e => e.preventDefault()}>
-                    Get more space
-                  </a>
-                </div>
+              <CardBody>
+                <h3 className={classes.cardTitle}>Photographs</h3>
+              </CardBody>
+              <CardFooter chart>
+                <Progress
+                  percent={80}
+                  status="active"
+                  strokeWidth={4}
+                  theme={{
+                    default: {
+                      symbol: "%",
+                      trailColor: "lightblue",
+                      color: "blue"
+                    }
+                  }}
+                />
               </CardFooter>
             </Card>
           </GridItem>
-          <GridItem xs={12} sm={6} md={3}>
+          <GridItem xs={12} sm={6} md={4}>
             <Card>
               <CardHeader color="success" stats icon>
                 <CardIcon color="success">
-                  <Store />
+                  <Icon>textsms</Icon>
                 </CardIcon>
-                <p className={classes.cardCategory}>Revenue</p>
-                <h3 className={classes.cardTitle}>$34,245</h3>
               </CardHeader>
-              <CardFooter stats>
-                <div className={classes.stats}>
-                  <DateRange />
-                  Last 24 Hours
-                </div>
+              <CardBody>
+                <h3 className={classes.cardTitle}>Response</h3>
+              </CardBody>
+              <CardFooter chart>
+                <Progress
+                  percent={80}
+                  status="active"
+                  strokeWidth={4}
+                  theme={{
+                    default: {
+                      symbol: "%",
+                      trailColor: "lightblue",
+                      color: "blue"
+                    }
+                  }}
+                />
               </CardFooter>
             </Card>
           </GridItem>
-          <GridItem xs={12} sm={6} md={3}>
+          <GridItem xs={12} sm={6} md={4}>
+            <Card>
+              <CardHeader color="warning" stats icon>
+                <CardIcon color="warning">
+                  <Icon>question_answer</Icon>
+                </CardIcon>
+              </CardHeader>
+              <CardBody>
+                <h3 className={classes.cardTitle}>Conversation</h3>
+              </CardBody>
+              <CardFooter chart>
+                <Progress
+                  percent={80}
+                  status="active"
+                  strokeWidth={4}
+                  theme={{
+                    default: {
+                      symbol: "%",
+                      trailColor: "lightblue",
+                      color: "blue"
+                    }
+                  }}
+                />
+              </CardFooter>
+            </Card>
+          </GridItem>
+        </GridContainer>
+        <GridContainer>
+          <GridItem xs={12} sm={6} md={4}>
             <Card>
               <CardHeader color="danger" stats icon>
                 <CardIcon color="danger">
-                  <Icon>info_outline</Icon>
+                  <Icon>record_voice_over</Icon>
                 </CardIcon>
-                <p className={classes.cardCategory}>Fixed Issues</p>
-                <h3 className={classes.cardTitle}>75</h3>
               </CardHeader>
-              <CardFooter stats>
-                <div className={classes.stats}>
-                  <LocalOffer />
-                  Tracked from Github
-                </div>
+              <CardBody>
+                <h3 className={classes.cardTitle}>Talks</h3>
+              </CardBody>
+              <CardFooter chart>
+                <Progress
+                  percent={80}
+                  status="active"
+                  strokeWidth={4}
+                  theme={{
+                    default: {
+                      symbol: "%",
+                      trailColor: "lightblue",
+                      color: "blue"
+                    }
+                  }}
+                />
               </CardFooter>
             </Card>
           </GridItem>
-          <GridItem xs={12} sm={6} md={3}>
+          <GridItem xs={12} sm={6} md={4}>
             <Card>
-              <CardHeader color="info" stats icon>
-                <CardIcon color="info">
-                  <Accessibility />
+              <CardHeader color="warning" stats icon>
+                <CardIcon color="warning">
+                  <Icon>space_bar</Icon>
                 </CardIcon>
-                <p className={classes.cardCategory}>Followers</p>
-                <h3 className={classes.cardTitle}>+245</h3>
               </CardHeader>
-              <CardFooter stats>
-                <div className={classes.stats}>
-                  <Update />
-                  Just Updated
-                </div>
+              <CardBody>
+                <h3 className={classes.cardTitle}>Rose</h3>
+              </CardBody>
+              <CardFooter chart>
+                <Progress
+                  percent={80}
+                  status="active"
+                  strokeWidth={4}
+                  theme={{
+                    default: {
+                      symbol: "%",
+                      trailColor: "lightblue",
+                      color: "blue"
+                    }
+                  }}
+                />
+              </CardFooter>
+            </Card>
+          </GridItem>
+          <GridItem xs={12} sm={6} md={4}>
+            <Card>
+              <CardHeader color="rose" stats icon>
+                <CardIcon color="rose">
+                  <Icon>border_color</Icon>
+                </CardIcon>
+              </CardHeader>
+              <CardBody>
+                <h3 className={classes.cardTitle}>Text Completion</h3>
+              </CardBody>
+              <CardFooter chart>
+                <Progress
+                  percent={80}
+                  status="active"
+                  strokeWidth={4}
+                  theme={{
+                    default: {
+                      symbol: "%",
+                      trailColor: "lightblue",
+                      color: "blue"
+                    }
+                  }}
+                />
+              </CardFooter>
+            </Card>
+          </GridItem>
+        </GridContainer>
+        <GridContainer>
+          <GridItem xs={12} sm={6} md={4}>
+            <Card>
+              <CardHeader color="primary" stats icon>
+                <CardIcon color="primary">
+                  <Icon>notes</Icon>
+                </CardIcon>
+              </CardHeader>
+              <CardBody>
+                <h3 className={classes.cardTitle}>Passages</h3>
+              </CardBody>
+              <CardFooter chart>
+                <Progress
+                  percent={80}
+                  status="active"
+                  strokeWidth={4}
+                  theme={{
+                    default: {
+                      symbol: "%",
+                      trailColor: "lightblue",
+                      color: "blue"
+                    }
+                  }}
+                />
               </CardFooter>
             </Card>
           </GridItem>

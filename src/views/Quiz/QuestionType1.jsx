@@ -14,6 +14,7 @@ import CardFooter from "components/Card/CardFooter.jsx";
 import AnswerButton from "./AnswerButton";
 import classNames from "classnames";
 import { Grid } from "@material-ui/core";
+import AudioPlayer from "react-h5-audio-player";
 
 const styles = {
   cardCategoryWhite: {
@@ -79,7 +80,10 @@ function QuestionType1(props) {
               <h4 className={classes.cardTitleWhite}>
                 Question 1 refer to the following audio
               </h4>
-              <p className={classes.cardCategoryWhite}>Complete your profile</p>
+              <AudioPlayer
+                src="./audio/p1_1_001.mp3"
+                onPlay={e => console.log("onPlay")}
+              />
             </CardHeader>
             <CardBody>
               <GridContainer>

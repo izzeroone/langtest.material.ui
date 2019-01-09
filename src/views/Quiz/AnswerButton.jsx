@@ -4,10 +4,21 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import GridContainer from "components/Grid/GridContainer.jsx";
 import { Grid } from "@material-ui/core";
 import classNames from "classnames";
-
+import Done from "@material-ui/icons/Done";
+import Close from "@material-ui/icons/Close";
 const styles = {
   round: {
     backgroundColor: "#C4C4C4",
+    width: "26px",
+    height: "26px"
+  },
+  roundCorrect: {
+    backgroundColor: "#4caf50",
+    width: "26px",
+    height: "26px"
+  },
+  roundIncorrect: {
+    backgroundColor: "#f44336",
     width: "26px",
     height: "26px"
   },
@@ -32,13 +43,28 @@ const styles = {
 };
 
 function AnswerButton(props) {
-  const { classes, title } = props;
+  const { classes, title, answerState } = props;
+  var indicator = <div className={classes.round} />;
+  if (answerState) {
+    if (answerState === 1) {
+      indicator = <Done nativeColor="white" className={classes.roundCorrect} />;
+    }
+    if (answerState === 2) {
+      indicator = (
+        <Close nativeColor="white" className={classes.roundIncorrect} />
+      );
+    }
+  }
   return (
     <div className={classes.closure}>
-      <div className={classes.round} />
+      {indicator}
       <p className={classes.answerText}>{title}</p>
     </div>
   );
 }
+
+// AnswerButton.propTypes = {
+//     title: PropTypes.string.isRequired
+// }
 
 export default withStyles(styles)(AnswerButton);
