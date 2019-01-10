@@ -33,7 +33,7 @@ import { Progress } from "react-sweet-progress";
 import { bugs, website, server } from "variables/general.jsx";
 import TopicData from "./TopicData";
 import topic2 from "./VocabularyList";
-
+import Button from "components/CustomButtons/Button.jsx";
 import {
   dailySalesChart,
   emailsSubscriptionChart,
@@ -44,10 +44,6 @@ import WordCard from "./WordCard";
 import { Grid } from "@material-ui/core";
 
 const styles = {
-  upArrowCardCategory: {
-    width: "16px",
-    height: "16px"
-  },
   profileCard: {
     marginLeft: "160px",
     marginRight: "160px"
@@ -88,7 +84,7 @@ const styles = {
   cardCategory: {
     color: "#999999",
     margin: "0",
-    fontSize: "18px",
+    fontSize: "28px",
     marginTop: "0",
     paddingTop: "10px",
     marginBottom: "0",
@@ -101,16 +97,17 @@ const styles = {
     marginTop: "0",
     marginBottom: "0"
   },
-  cardTitle: {
+  topicTitle: {
     color: "#00BCD4",
     marginTop: "0px",
     minHeight: "auto",
     fontWeight: "400",
     fontFamily: "'Roboto', 'Helvetica', 'Arial', sans-serif",
-    marginBottom: "3px",
+    marginBottom: "16px",
+    marginLeft: "16px",
     textDecoration: "none",
     textAlign: "center",
-    fontSize: "26px",
+    fontSize: "40px",
     "& small": {
       color: "#777",
       fontWeight: "400",
@@ -145,20 +142,6 @@ const styles = {
     textDecoration: "none",
     textAlign: "left"
   },
-  cardTitleWhite: {
-    color: "#FFFFFF",
-    marginTop: "0px",
-    minHeight: "auto",
-    fontWeight: "300",
-    fontFamily: "'Roboto', 'Helvetica', 'Arial', sans-serif",
-    marginBottom: "3px",
-    textDecoration: "none",
-    "& small": {
-      color: "#777",
-      fontWeight: "400",
-      lineHeight: "1"
-    }
-  },
   img: {
     display: "block",
     maxWidth: "280px",
@@ -170,6 +153,16 @@ const styles = {
   card: {
     marginLeft: "100px",
     marginRight: "100px"
+  },
+  avatar: {
+    display: "block",
+    width: "140px",
+    height: "140px",
+    maxWidth: "140px",
+    maxHeight: "140px",
+    itemAlign: "center",
+    objectFix: "cover",
+    borderRadius: "10px"
   }
 };
 class WordScreen extends React.Component {
@@ -187,6 +180,44 @@ class WordScreen extends React.Component {
     const { classes } = this.props;
     return (
       <Grid container direction={"column"}>
+        <Grid
+          style={{ paddingLeft: "160px", paddingRight: "160px" }}
+          container
+          direction="row"
+        >
+          <Grid
+            container
+            xs={12}
+            sm={6}
+            md={6}
+            direction="row"
+            alignItems="center"
+            justify="center"
+          >
+            <img
+              className={classes.avatar}
+              src="https://www.iamexpat.nl/sites/default/files/styles/article--full/public/oldimages/67cddc45e6e8c166afe752d0b5e0866c1441700680.jpg?itok=1VUc7csy"
+              alt="..."
+            />
+            <Grid item direction="column" alignItems="center" justify="center">
+              <p className={classes.topicTitle}>Contract</p>
+              <p className={classes.cardCategory}>12 words</p>
+            </Grid>
+          </Grid>
+
+          <Grid
+            container
+            xs={12}
+            sm={6}
+            md={6}
+            direction="row"
+            alignItems="center"
+            justify="center"
+          >
+            <Button color="success">Learn word</Button>
+            <Button color="primary">Practice</Button>
+          </Grid>
+        </Grid>
         <GridContainer className={classes.card}>
           <GridItem xs={12} sm={6} md={4}>
             <WordCard word={topic2[0]} />

@@ -21,6 +21,7 @@ import HomeScreen from "../views/HomeScreen/HomeScreen";
 import ResultScreen from "../views/ResultScreen/ResultScreen";
 import Vocabulary from "../views/Vocabulary/Vocabulary";
 import WordScreen from "../views/Vocabulary/WordScreen";
+import LearnWordScreen from "../views/Vocabulary/LearnWordScreen";
 
 const dashboardRoutes = [
   {
@@ -71,6 +72,13 @@ const dashboardRoutes = [
     navbarName: "Word",
     icon: Person,
     component: WordScreen
+  },
+  {
+    path: "/learn",
+    sidebarName: "Learn",
+    navbarName: "Learn",
+    icon: Person,
+    component: LearnWordScreen
   },
   {
     path: "/table",

@@ -32,21 +32,19 @@ import CardFooter from "components/Card/CardFooter.jsx";
 import { Progress } from "react-sweet-progress";
 import { bugs, website, server } from "variables/general.jsx";
 import TopicData from "./TopicData";
-import CardAvatar from "components/Card/CardAvatar.jsx";
-import avatar from "assets/img/faces/marc.jpg";
+import topic2 from "./VocabularyList";
+import Button from "components/CustomButtons/Button.jsx";
 import {
   dailySalesChart,
   emailsSubscriptionChart,
   completedTasksChart
 } from "variables/charts.jsx";
 import TopicCard from "./VocabularyCard";
+import WordCard from "./WordCard";
 import { Grid } from "@material-ui/core";
+import LearnWordCard from "./LearnWordCard";
 
 const styles = {
-  upArrowCardCategory: {
-    width: "16px",
-    height: "16px"
-  },
   profileCard: {
     marginLeft: "160px",
     marginRight: "160px"
@@ -87,7 +85,7 @@ const styles = {
   cardCategory: {
     color: "#999999",
     margin: "0",
-    fontSize: "18px",
+    fontSize: "28px",
     marginTop: "0",
     paddingTop: "10px",
     marginBottom: "0",
@@ -100,16 +98,17 @@ const styles = {
     marginTop: "0",
     marginBottom: "0"
   },
-  cardTitle: {
+  topicTitle: {
     color: "#00BCD4",
     marginTop: "0px",
     minHeight: "auto",
     fontWeight: "400",
     fontFamily: "'Roboto', 'Helvetica', 'Arial', sans-serif",
-    marginBottom: "3px",
+    marginBottom: "16px",
+    marginLeft: "16px",
     textDecoration: "none",
     textAlign: "center",
-    fontSize: "26px",
+    fontSize: "40px",
     "& small": {
       color: "#777",
       fontWeight: "400",
@@ -144,28 +143,17 @@ const styles = {
     textDecoration: "none",
     textAlign: "left"
   },
-  cardTitleWhite: {
-    color: "#FFFFFF",
-    marginTop: "0px",
-    minHeight: "auto",
-    fontWeight: "300",
-    fontFamily: "'Roboto', 'Helvetica', 'Arial', sans-serif",
-    marginBottom: "3px",
-    textDecoration: "none",
-    "& small": {
-      color: "#777",
-      fontWeight: "400",
-      lineHeight: "1"
-    }
-  },
   img: {
     display: "block",
-    width: "280px",
-    height: "218px",
     maxWidth: "280px",
     maxHeight: "218px",
     align: "center",
-    objectFix: "cover"
+    objectFix: "cover",
+    margin: "auto"
+  },
+  card: {
+    marginLeft: "100px",
+    marginRight: "100px"
   },
   avatar: {
     display: "block",
@@ -177,44 +165,12 @@ const styles = {
     objectFix: "cover",
     borderRadius: "10px"
   },
-  textTotalAnswer: {
-    color: "#000000",
-    marginTop: "0px",
-    minHeight: "auto",
-    fontWeight: "400",
-    fontFamily: "'Roboto', 'Helvetica', 'Arial', sans-serif",
-    marginBottom: "12px",
-    textDecoration: "none",
-    fontSize: "36px",
-    textAlign: "center",
-    verticalAlign: "center"
-  },
-  textCorrectAnswer: {
-    color: "#46C00D",
-    marginTop: "0px",
-    minHeight: "auto",
-    fontWeight: "400",
-    fontFamily: "'Roboto', 'Helvetica', 'Arial', sans-serif",
-    marginBottom: "12px",
-    textDecoration: "none",
-    fontSize: "30px",
-    textAlign: "center",
-    verticalAlign: "center"
-  },
-  textIncorrectAnswer: {
-    color: "#D8585E",
-    marginTop: "0px",
-    minHeight: "auto",
-    fontWeight: "400",
-    fontFamily: "'Roboto', 'Helvetica', 'Arial', sans-serif",
-    marginBottom: "12px",
-    textDecoration: "none",
-    fontSize: "30px",
-    textAlign: "center",
-    verticalAlign: "center"
+  cardPadding: {
+    paddingLeft: "180px",
+    paddingRight: "180px"
   }
 };
-class Vocabulary extends React.Component {
+class LearnWordScreen extends React.Component {
   state = {
     value: 0
   };
@@ -228,68 +184,22 @@ class Vocabulary extends React.Component {
   render() {
     const { classes } = this.props;
     return (
-      <div>
-        <Grid
-          style={{ paddingLeft: "160px", paddingRight: "160px" }}
-          container
-          direction="row"
-        >
-          <Grid item xs={12} sm={6} md={3} alignItems="center" justify="center">
-            <img className={classes.avatar} src={avatar} alt="..." />
-          </Grid>
-          <Grid
-            container
-            xs={12}
-            sm={6}
-            md={3}
-            direction="column"
-            alignItems="center"
-            justify="center"
-          >
-            <p className={classes.textTotalAnswer}>Total answer</p>
-            <p className={classes.textTotalAnswer}>30</p>
-          </Grid>
-          <Grid
-            container
-            xs={12}
-            sm={6}
-            md={3}
-            direction="column"
-            alignItems="center"
-            justify="center"
-          >
-            <p className={classes.textCorrectAnswer}>Correct</p>
-            <p className={classes.textCorrectAnswer}>15</p>
-          </Grid>
-          <Grid
-            container
-            xs={12}
-            sm={6}
-            md={3}
-            direction="column"
-            alignItems="center"
-            justify="center"
-          >
-            <p className={classes.textIncorrectAnswer}>Wrong</p>
-            <p className={classes.textIncorrectAnswer}>15</p>
-          </Grid>
-        </Grid>
-        <GridContainer>
-          {TopicData.map((value, id) => {
-            return (
-              <GridItem key={id} xs={12} sm={6} md={4}>
-                <TopicCard topic={value} />
-              </GridItem>
-            );
-          })}
-        </GridContainer>
-      </div>
+      <Grid
+        className={classes.cardPadding}
+        container
+        direction={"column"}
+        alignItems="center"
+        justify="center"
+      >
+        <LearnWordCard word={topic2[0]} />
+        <Progress type="circle" percent={88} status="active" />
+      </Grid>
     );
   }
 }
 
-Vocabulary.propTypes = {
+LearnWordScreen.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(Vocabulary);
+export default withStyles(styles)(LearnWordScreen);

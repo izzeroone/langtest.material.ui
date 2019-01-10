@@ -59,7 +59,7 @@ const styles = {
     fontSize: "18px",
     marginTop: "0",
     marginBottom: "0",
-    textAlign: "left",
+    textAlign: "center",
     verticalAlign: "center",
     height: "60px",
     lineHeight: "20px"
@@ -117,20 +117,23 @@ class WordCard extends React.Component {
   render() {
     const { classes, word } = this.props;
     return (
-      <Card
-        onClick={() => {
-          this.handleChange();
-        }}
-      >
-        <CardHeader>
-          <Grid
-            container
-            direction="row"
-            justify="space-around"
-            alignItems="center"
-          >
-            <Grid item direction="column" justify="center" alignItems="center">
-              <p className={classes.cardTitle} >{word.word}</p>
+      <Grid container direction="column">
+        <Card
+          onClick={() => {
+            this.handleChange();
+          }}
+        >
+          <CardBody>
+            <Grid
+              container
+              direction="column"
+              justify="space-around"
+              alignItems="center"
+            >
+              <Grid item>
+                <img className={classes.img} src="./images/img/t1w1.jpg" />
+              </Grid>
+              <p className={classes.cardTitle}>{word.word}</p>
               <p className={classes.cardCategory}>
                 <Grid
                   container
@@ -138,29 +141,32 @@ class WordCard extends React.Component {
                   justify="center"
                   alignItems="center"
                 >
-                  <Icon className={classes.icon}>mood</Icon>
+                  <Icon className={classes.icon}>volume_up</Icon>
                   <span className={classes.pronoun}>[{word.pronoun}]</span>
                 </Grid>
               </p>
             </Grid>
-            <Grid item>
-              <img className={classes.img} src="./images/img/t1w1.jpg" />
+          </CardBody>
+          <CardFooter chart>
+            <Grid
+              container
+              direction="column"
+              justify="space-around"
+              alignItems="center"
+            >
+              <p className={classes.exampleText}>
+                <Highlighter
+                  searchWords={[word.word]}
+                  autoEscape={true}
+                  highlightTag="u"
+                  unhighlightClassName={classes.exampleText}
+                  textToHighlight={word.ex}
+                />
+              </p>
             </Grid>
-          </Grid>
-        </CardHeader>
-        <CardBody>
-          <p className={classes.exampleText}>
-            <Highlighter
-              searchWords={[word.word]}
-              autoEscape={true}
-              highlightTag="u"
-              unhighlightClassName={classes.exampleText}
-              textToHighlight={word.ex}
-            />
-          </p>
-        </CardBody>
-        <CardFooter chart />
-      </Card>
+          </CardFooter>
+        </Card>
+      </Grid>
     );
   }
 }

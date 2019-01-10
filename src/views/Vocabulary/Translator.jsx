@@ -3,37 +3,8 @@ import { Flipper, Flipped, ExitContainer } from "react-flip-toolkit";
 
 import styled, { createGlobalStyle } from "styled-components";
 
-const InlineBlockSpan = styled.span`
-  display: inline-block;
-  min-width: 0.5rem;
-  font-size: 3rem;
-`;
-
-const MessageContainer = styled.div`
-  width: 500px;
-  height: 250px;
-  display: flex;
-  flex-wrap: wrap;
-  align-content: baseline;
-`;
-
-const WordContainer = styled.div`
-  margin-left: 0.25rem;
-  margin-right: 0.25rem;
-`;
-
 const GlobalStyle = createGlobalStyle`
-body {
-  font-family: -apple-system,
-  system-ui,
-  BlinkMacSystemFont,
-  "Segoe UI",
-  "Roboto",
-  "Helvetica Neue",
-  Arial,
-  sans-serif;
-  padding: 3rem;
-}
+
 
 @keyframes fadeIn {
   0%   { opacity: 0; }
@@ -86,10 +57,10 @@ class FlippedMessage extends React.Component {
 
     return (
       <ExitContainer>
-        <MessageContainer>
+        <p>
           {message.split(" ").map(word => {
             return (
-              <WordContainer>
+              <p>
                 {word.split("").map(l => {
                   const flipId = `${l}-${letterDict[l].indexOf(letterIndex)}`;
                   letterIndex += 1;
@@ -100,17 +71,17 @@ class FlippedMessage extends React.Component {
                       onExit={this.onExit}
                       key={flipId}
                     >
-                      <InlineBlockSpan>{l}</InlineBlockSpan>
+                      <span>{l}</span>
                     </Flipped>
                   );
                 })}
-              </WordContainer>
+              </p>
             );
           })}
           <Flipped>
             <div />
           </Flipped>
-        </MessageContainer>
+        </p>
       </ExitContainer>
     );
   }
@@ -179,15 +150,14 @@ class EnterUpdateDeleteStepper extends React.Component {
     else if (this.state.stage[this.state.stageIndex + 1])
       btnText = (
         <div>
-          <b>Next:</b>&nbsp;
+          <b>Next:</b>
+          &nbsp;
           {this.state.stage[this.state.stageIndex + 1].title}
         </div>
       );
 
     const contents = (
-      <TitleRow>
-        <h1>{(currentStage && currentStage.title) || defaultTitle}</h1>
-      </TitleRow>
+      <h1>{(currentStage && currentStage.title) || defaultTitle}</h1>
     );
     {
       this.props.children;
@@ -204,13 +174,8 @@ class EnterUpdateDeleteStepper extends React.Component {
         handleEnterUpdateDelete={this.handleEnterUpdateDelete}
         spring="veryGentle"
       >
-        <TitleRow>
-          <h1>{(currentStage && currentStage.title) || defaultTitle}</h1>
-        </TitleRow>
         {this.props.children}
-        {Boolean(this.state.stage.length) && (
-          <button onClick={this.advanceStage}>{btnText}</button>
-        )}
+        <button onClick={this.advanceStage}>{btnText}</button>
       </Flipper>
     );
   }
