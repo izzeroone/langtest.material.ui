@@ -68,44 +68,75 @@ const styles = {
   }
 };
 
-function BaseQuestion(props) {
-  const { classes, question } = props;
-  return (
-    <div>
-      <GridContainer>
-        <GridItem xs={12} sm={12} md={12}>
-          <GridContainer>
-            <GridItem xs={12} sm={12} md={12}>
-              <p className={classes.questionTitle}>
-                {question.id}. {question.question}
-              </p>
-            </GridItem>
-          </GridContainer>
-          <GridContainer>
-            <GridItem xs={12} sm={12} md={12}>
-              {question.type === "3" &&
-                question.imageAsset && (
-                  <img
-                    className={classes.img}
-                    alt="loading"
-                    src={question.imageAsset}
-                  />
-                )}
-            </GridItem>
-          </GridContainer>
-          <GridContainer>
-            {question.answer.map((answer, id) => {
-              return (
-                <GridItem key={id} xs={6} sm={6} md={3}>
-                  <AnswerButton title={answer} />
-                </GridItem>
-              );
-            })}
-          </GridContainer>
-        </GridItem>
-      </GridContainer>
-    </div>
-  );
+class BaseQuestion extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      answerState: [0, 0, 0, 0],
+      isAnswer: false
+    };
+  }
+
+  answerQuestion = index => {
+    if (this.state.isAnswer) {
+      return;
+    }
+    const { question } = this.props;
+    var answerState = this.state.answerState;
+    answerState[index] = 2;
+    answerState[question.correctAnswer] = 1;
+    this.setState({
+      answerState: answerState,
+      isAnswer: true
+    });
+  };
+  render() {
+    const { classes, question } = this.props;
+    return (
+      <div>
+        <GridContainer>
+          <GridItem xs={12} sm={12} md={12}>
+            <GridContainer>
+              <GridItem xs={12} sm={12} md={12}>
+                <p className={classes.questionTitle}>
+                  {question.id}. {question.question}
+                </p>
+              </GridItem>
+            </GridContainer>
+            <GridContainer>
+              <GridItem xs={12} sm={12} md={12}>
+                {question.type === "3" &&
+                  question.imageAsset && (
+                    <img
+                      className={classes.img}
+                      alt="loading"
+                      src={question.imageAsset}
+                    />
+                  )}
+              </GridItem>
+            </GridContainer>
+            <GridContainer>
+              {question.answer.map((answer, id) => {
+                return (
+                  <GridItem key={id} xs={6} sm={6} md={3}>
+                    <AnswerButton
+                      answerState={this.state.answerState[id]}
+                      title={answer}
+                      id={id}
+                      answerFunction={() => {
+                        this.answerQuestion(id);
+                      }}
+                    />
+                  </GridItem>
+                );
+              })}
+            </GridContainer>
+          </GridItem>
+        </GridContainer>
+      </div>
+    );
+  }
 }
 
 export default withStyles(styles)(BaseQuestion);

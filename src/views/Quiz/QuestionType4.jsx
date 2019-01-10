@@ -14,6 +14,7 @@ import CardFooter from "components/Card/CardFooter.jsx";
 import AnswerButton from "./AnswerButton";
 import classNames from "classnames";
 import { Grid } from "@material-ui/core";
+import BaseQuestion from "./BaseQuestion";
 
 const styles = {
   cardCategoryWhite: {
@@ -83,33 +84,7 @@ function QuestionType4(props) {
               </h4>
             </CardHeader> */}
             <CardBody>
-              <GridContainer>
-                <GridItem xs={12} sm={12} md={12}>
-                  <p className={classes.questionTitle}>
-                    {question.id}. {question.question}
-                  </p>
-                </GridItem>
-              </GridContainer>
-              <GridContainer>
-                <GridItem xs={12} sm={12} md={12}>
-                  {question.imageAsset && (
-                    <img
-                      className={classes.img}
-                      alt="loading"
-                      src={question.imageAsset}
-                    />
-                  )}
-                </GridItem>
-              </GridContainer>
-              <GridContainer>
-                {question.answer.map((answer, id) => {
-                  return (
-                    <GridItem key={id} xs={6} sm={6} md={3}>
-                      <AnswerButton title={answer} />
-                    </GridItem>
-                  );
-                })}
-              </GridContainer>
+              <BaseQuestion question={question} />
             </CardBody>
           </Card>
         </GridItem>

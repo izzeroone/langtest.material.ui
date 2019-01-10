@@ -19,6 +19,8 @@ import NotificationsPage from "views/Notifications/Notifications.jsx";
 import UpgradeToPro from "views/UpgradeToPro/UpgradeToPro.jsx";
 import HomeScreen from "../views/HomeScreen/HomeScreen";
 import ResultScreen from "../views/ResultScreen/ResultScreen";
+import Vocabulary from "../views/Vocabulary/Vocabulary";
+import WordScreen from "../views/Vocabulary/WordScreen";
 
 const dashboardRoutes = [
   {
@@ -55,6 +57,20 @@ const dashboardRoutes = [
     navbarName: "result",
     icon: Person,
     component: ResultScreen
+  },
+  {
+    path: "/topic",
+    sidebarName: "Topic",
+    navbarName: "Topic",
+    icon: Person,
+    component: Vocabulary
+  },
+  {
+    path: "/word",
+    sidebarName: "Word",
+    navbarName: "Word",
+    icon: Person,
+    component: WordScreen
   },
   {
     path: "/table",

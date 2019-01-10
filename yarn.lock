@@ -1842,7 +1842,7 @@ class-utils@^0.3.5:
     isobject "^3.0.0"
     static-extend "^0.1.1"
 
-classnames@^2.2.5, classnames@^2.2.6:
+classnames@^2.2.0, classnames@^2.2.5, classnames@^2.2.6:
   version "2.2.6"
   resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.6.tgz#43935bffdd291f326dad0a205309b38d00f650ce"
   integrity sha512-JR/iSQOSt+LQIWwrwEzJ9uk0xfN3mTVYMwt1Ir5mUcSN6pU+V4zQFFaJsclJbPuAUQH+yfWef6tm7l1quW3C8Q==
@@ -3957,6 +3957,11 @@ he@1.2.x:
   resolved "https://registry.yarnpkg.com/he/-/he-1.2.0.tgz#84ae65fa7eafb165fddb61566ae14baf05664f0f"
   integrity sha512-F/1DnUGPopORZi0ni+CvrCgHQ5FyEAHRLSApuYWMmrbSwoN2Mn/7k+Gl38gJnR7yyDZk6WLXwiGod1JOWNDKGw==
 
+highlight-words-core@^1.2.0:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/highlight-words-core/-/highlight-words-core-1.2.2.tgz#1eff6d7d9f0a22f155042a00791237791b1eeaaa"
+  integrity sha512-BXUKIkUuh6cmmxzi5OIbUJxrG8OAk2MqoL1DtO3Wo9D2faJg2ph5ntyuQeLqaHJmzER6H5tllCDA9ZnNe9BVGg==
+
 history@^4.7.2:
   version "4.7.2"
   resolved "https://registry.yarnpkg.com/history/-/history-4.7.2.tgz#22b5c7f31633c5b8021c7f4a8a954ac139ee8d5b"
@@ -5538,6 +5543,11 @@ mem@^1.1.0:
   dependencies:
     mimic-fn "^1.0.0"
 
+memoize-one@^4.0.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/memoize-one/-/memoize-one-4.1.0.tgz#a2387c58c03fff27ca390c31b764a79addf3f906"
+  integrity sha512-2GApq0yI/b22J2j9rhbrAlsHb0Qcz+7yWxeLG8h+95sl1XPUgeLimQSOdur4Vw7cUhrBHwaUZxWFZueojqNRzA==
+
 memory-fs@^0.4.0, memory-fs@~0.4.1:
   version "0.4.1"
   resolved "https://registry.yarnpkg.com/memory-fs/-/memory-fs-0.4.1.tgz#3a9a20b8462523e447cfbc7e8bb80ed667bfc552"
@@ -7009,6 +7019,14 @@ rc@^1.0.1, rc@^1.1.6, rc@^1.2.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
+react-card-flip@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/react-card-flip/-/react-card-flip-0.3.0.tgz#b7ece0ec823f793343738be8eef9f39660582f81"
+  integrity sha512-+brmWCogsJmS5cjpd4iRS7Z4Mfz+jaEVUvKK/Q1edWTOgXjjA6EI1l+u/ID6XF2szQ/9QbXKqNf5myb5OM51Yg==
+  dependencies:
+    classnames "^2.2.0"
+    prop-types "^15.6.0"
+
 react-chartist@0.13.1:
   version "0.13.1"
   resolved "https://registry.yarnpkg.com/react-chartist/-/react-chartist-0.13.1.tgz#79cee44891dfd7008d555a7a5a623ab09c0b59d1"
@@ -7085,6 +7103,15 @@ react-h5-audio-player@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/react-h5-audio-player/-/react-h5-audio-player-1.1.0.tgz#a75ad4b9a7f4d33ee722843ae7576d83147b8e99"
   integrity sha512-nJz85m3Vi6dC8PgurovXCIDas9P0N3wnElfV+95HC8I5VC96MlEkxUpIYuS7wigJhnIUSl3/9LQERaZMNRcFGw==
+
+react-highlight-words@^0.15.1:
+  version "0.15.1"
+  resolved "https://registry.yarnpkg.com/react-highlight-words/-/react-highlight-words-0.15.1.tgz#278bcfe85e0e412ce7927a931f342366b40c3cfe"
+  integrity sha512-mE83O927uJk3wtiXk46R0sw29Fa/LLmE6ZYuXLlN46YKqxtueWjW+gytV0j9XdjqS86ryd22Ugm0yKURaOhihg==
+  dependencies:
+    highlight-words-core "^1.2.0"
+    memoize-one "^4.0.0"
+    prop-types "^15.5.8"
 
 react-jss@^8.1.0:
   version "8.6.1"

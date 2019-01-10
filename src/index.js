@@ -6,7 +6,7 @@ import "assets/css/material-dashboard-react.css?v=1.5.0";
 import "./index.css";
 import "react-sweet-progress/lib/style.css";
 import indexRoutes from "routes/index.jsx";
-
+import ResultScreen from "./views/ResultScreen/ResultScreen";
 const hist = createBrowserHistory();
 
 ReactDOM.render(
@@ -15,6 +15,7 @@ ReactDOM.render(
       {indexRoutes.map((prop, key) => {
         return <Route path={prop.path} component={prop.component} key={key} />;
       })}
+      <Route path={"/result2"} component={ResultScreen} />
     </Switch>
   </Router>,
   document.getElementById("root")

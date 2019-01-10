@@ -122,7 +122,7 @@ const styles = {
 };
 
 class ResultScreen extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
 
     this.state = {
@@ -141,7 +141,7 @@ class ResultScreen extends React.Component {
     this.setState({ value: index });
   };
   render() {
-    const { classes } = this.props;
+    const { classes, history } = this.props;
     return (
       <div>
         <Grid className={classes.profileCard}>
@@ -188,7 +188,14 @@ class ResultScreen extends React.Component {
                 </GridItem>
                 <GridItem xs={12} sm={12} md={8}>
                   <div className={classes.retryButton}>
-                    <Button color="danger" size="lg" block>
+                    <Button
+                      color="danger"
+                      size="lg"
+                      block
+                      onClick={() => {
+                        history.push("/quiz");
+                      }}
+                    >
                       <h5 className={classes.profileTitle}>DO AGAIN</h5>
                     </Button>
                   </div>

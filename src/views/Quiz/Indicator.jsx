@@ -37,19 +37,62 @@ import {
 import dashboardStyle from "assets/jss/material-dashboard-react/views/dashboardStyle.jsx";
 import { Grid } from "@material-ui/core";
 import classNames from "classnames";
+import { height } from "window-size";
+import { withRouter } from "react-router-dom";
 const styles = {
   blueCard: {
     backgroundColor: "#006497",
-    position: "fixed",
-    zIndex: 5,
-    width: "200px",
-    float: "right",
-    right: "10px"
+    position: "sticky",
+    zIndex: 10
   },
-  floatRight: {
-    zIndex: 5,
-    width: "200px",
-    float: "right"
+  icon: {
+    transform: "scale(1.2)",
+    marginRight: "10px"
+  },
+  item: {
+    color: "#3C4858",
+    minHeight: "auto",
+    fontWeight: "400",
+    fontFamily: "'Roboto', 'Helvetica', 'Arial', sans-serif",
+    textDecoration: "none",
+    textAlign: "left",
+    verticalAlign: "center"
+  },
+  controlCard: {
+    width: "500px"
+  },
+  profileCard: {
+    position: "sticky",
+    top: "20px",
+    zIndex: 10
+  },
+  time: {
+    color: "#777",
+    marginTop: "0px",
+    minHeight: "auto",
+    fontWeight: "300",
+    fontFamily: "'Roboto', 'Helvetica', 'Arial', sans-serif",
+    marginBottom: "3px",
+    textDecoration: "none",
+    fontStyle: "italic",
+    textAlign: "center",
+    "& small": {
+      color: "#777",
+      fontWeight: "400",
+      lineHeight: "1",
+      fontStyle: "normal"
+    }
+  },
+  cardSmallInfo: {
+    color: "#3C4858",
+    marginTop: "0px",
+    minHeight: "auto",
+    fontWeight: "400",
+    fontFamily: "'Roboto', 'Helvetica', 'Arial', sans-serif",
+    marginBottom: "3px",
+    textDecoration: "none",
+    textAlign: "left",
+    verticalAlign: "center"
   }
 };
 class Indicator extends React.Component {
@@ -57,16 +100,57 @@ class Indicator extends React.Component {
     super(props);
   }
   render() {
-    const { classes } = this.props;
+    const { classes, history } = this.props;
     return (
-      <Card className={classes.blueCard}>
-        <Grid container direction="row" justify="center" alignItems="center">
-          <p>Correct Answer</p>
-          <p>Inccorect Ắner</p>
-        </Grid>
-      </Card>
+      <Grid className={classes.profileCard} container direction="row-reverse">
+        <GridItem>
+          <Card profile className={classes.controlCard}>
+            <CardBody>
+              <Grid
+                container
+                direction="row"
+                justify="space-between"
+                alignItems="center"
+              >
+                <GridItem xs={12} sm={12} md={4}>
+                  <Grid
+                    container
+                    direction="row"
+                    justify="center"
+                    alignItems="center"
+                  >
+                    <Icon className={classes.icon}>mood</Icon>
+                    <s className={classNames(classes.icon, classes.item)}>12</s>
+                    <Icon className={classes.icon}> mood</Icon>
+                    <s className={classNames(classes.icon, classes.item)}>12</s>
+                  </Grid>
+                </GridItem>
+                <GridItem xs={12} sm={12} md={4}>
+                  <p className={classNames(classes.icon, classes.time)}>
+                    Time left: 5.00
+                  </p>
+                </GridItem>
+                <GridItem xs={12} sm={12} md={4}>
+                  <Button
+                    color="danger"
+                    round
+                    size="sm"
+                    onClick={() => {
+                      history.push("/result");
+                    }}
+                  >
+                    <Icon style={{ marginRight: "20px" }}>done</Icon>
+                    FINISH
+                  </Button>
+                </GridItem>
+              </Grid>
+            </CardBody>
+          </Card>
+        </GridItem>
+        <GridItem />
+      </Grid>
     );
   }
 }
 
-export default withStyles(styles)(Indicator);
+export default withRouter(withStyles(styles)(Indicator));

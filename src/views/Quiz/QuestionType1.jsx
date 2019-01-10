@@ -69,57 +69,88 @@ const styles = {
   }
 };
 
-function QuestionType1(props) {
-  const { classes, question } = props;
-  const md = 12 / question.answer.length;
-  return (
-    <div>
-      <GridContainer>
-        <GridItem xs={12} sm={12} md={12}>
-          <Card>
-            <CardHeader color="primary">
-              <h4 className={classes.cardTitleWhite}>
-                Question {question.id} refer to the following audio
-              </h4>
-              {question.audioAsset && (
-                <AudioPlayer
-                  src={question.audioAsset}
-                  onPlay={e => console.log("onPlay")}
-                />
-              )}
-            </CardHeader>
-            <CardBody>
-              <GridContainer>
-                <GridItem xs={12} sm={12} md={12}>
-                  <p className={classes.questionTitle}>{question.id}</p>
-                </GridItem>
-              </GridContainer>
-              <GridContainer>
-                <GridItem xs={12} sm={12} md={12}>
-                  {question.imageAsset && (
-                    <img
-                      className={classes.img}
-                      alt="loading"
-                      src={question.imageAsset}
-                    />
-                  )}
-                </GridItem>
-              </GridContainer>
-              <GridContainer>
-                {question.answer.map((answer, id) => {
-                  return (
-                    <GridItem key={id} xs={6} sm={6} md={md}>
-                      <AnswerButton title={answer} />
-                    </GridItem>
-                  );
-                })}
-              </GridContainer>
-            </CardBody>
-          </Card>
-        </GridItem>
-      </GridContainer>
-    </div>
-  );
+class QuestionType1 extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      answerState: [0, 0, 0, 0],
+      isAnswer: false
+    };
+  }
+
+  answerQuestion = index => {
+    if (this.state.isAnswer) {
+      return;
+    }
+    const { question } = this.props;
+    var answerState = this.state.answerState;
+    answerState[index] = 2;
+    answerState[question.correctAnswer] = 1;
+    this.setState({
+      answerState: answerState,
+      isAnswer: true
+    });
+  };
+  render() {
+    const { classes, question } = this.props;
+    const md = 12 / question.answer.length;
+    return (
+      <div>
+        <GridContainer>
+          <GridItem xs={12} sm={12} md={12}>
+            <Card>
+              <CardHeader color="primary">
+                <h4 className={classes.cardTitleWhite}>
+                  Question {question.id} refer to the following audio
+                </h4>
+                {question.audioAsset && (
+                  <AudioPlayer
+                    src={question.audioAsset}
+                    onPlay={e => console.log("onPlay")}
+                  />
+                )}
+              </CardHeader>
+              <CardBody>
+                <GridContainer>
+                  <GridItem xs={12} sm={12} md={12}>
+                    <p className={classes.questionTitle}>{question.id}</p>
+                  </GridItem>
+                </GridContainer>
+                <GridContainer>
+                  <GridItem xs={12} sm={12} md={12}>
+                    {question.imageAsset && (
+                      <img
+                        className={classes.img}
+                        alt="loading"
+                        src={question.imageAsset}
+                      />
+                    )}
+                  </GridItem>
+                </GridContainer>
+                <GridContainer>
+                  {question.answer.map((answer, id) => {
+                    return (
+                      <GridItem key={id} xs={6} sm={6} md={md}>
+                        <AnswerButton
+                          answerState={this.state.answerState[id]}
+                          title={answer}
+                          id={id}
+                          answerFunction={() => {
+                            this.answerQuestion(id);
+                          }}
+                        />
+                      </GridItem>
+                    );
+                  })}
+                </GridContainer>
+              </CardBody>
+            </Card>
+          </GridItem>
+        </GridContainer>
+      </div>
+    );
+  }
 }
 
 export default withStyles(styles)(QuestionType1);

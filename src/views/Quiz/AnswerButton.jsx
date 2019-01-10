@@ -49,7 +49,8 @@ const styles = {
 };
 
 function AnswerButton(props) {
-  const { classes, title, answerState } = props;
+  const { classes, title, answerState, answerFunction, id } = props;
+  console.log(props);
   var indicator = <div className={classes.round} />;
   if (answerState) {
     if (answerState === 1) {
@@ -62,7 +63,7 @@ function AnswerButton(props) {
     }
   }
   return (
-    <div className={classes.closure}>
+    <div className={classes.closure} onClick={answerFunction}>
       {indicator}
       <p className={classes.answerText}>{title}</p>
     </div>
