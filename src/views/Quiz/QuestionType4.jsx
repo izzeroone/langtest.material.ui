@@ -69,7 +69,7 @@ const styles = {
 };
 
 function QuestionType4(props) {
-  const { classes } = props;
+  const { classes, question } = props;
   return (
     <div>
       <GridContainer>
@@ -86,34 +86,29 @@ function QuestionType4(props) {
               <GridContainer>
                 <GridItem xs={12} sm={12} md={12}>
                   <p className={classes.questionTitle}>
-                    4. In the hope of finding fresh ideas he used the internet
-                    to help him by using as many search ....... as he could
-                    discover
+                    {question.id}. {question.question}
                   </p>
                 </GridItem>
               </GridContainer>
-              {/* <GridContainer>
-                <GridItem xs={12} sm={12} md={12}>
-                  <img
-                    className={classes.img}
-                    alt="complex"
-                    src="./test1/p1_1_001.png"
-                  />
-                </GridItem>
-              </GridContainer> */}
               <GridContainer>
-                <GridItem xs={6} sm={6} md={3}>
-                  <AnswerButton title="A.Gangways " />
+                <GridItem xs={12} sm={12} md={12}>
+                  {question.imageAsset && (
+                    <img
+                      className={classes.img}
+                      alt="loading"
+                      src={question.imageAsset}
+                    />
+                  )}
                 </GridItem>
-                <GridItem xs={6} sm={6} md={3}>
-                  <AnswerButton title="B. Portals" />
-                </GridItem>
-                <GridItem xs={12} sm={6} md={3}>
-                  <AnswerButton title="C. Donald" />
-                </GridItem>
-                <GridItem xs={12} sm={6} md={3}>
-                  <AnswerButton title="D. Trump" />
-                </GridItem>
+              </GridContainer>
+              <GridContainer>
+                {question.answer.map((answer, id) => {
+                  return (
+                    <GridItem key={id} xs={6} sm={6} md={3}>
+                      <AnswerButton title={answer} />
+                    </GridItem>
+                  );
+                })}
               </GridContainer>
             </CardBody>
           </Card>

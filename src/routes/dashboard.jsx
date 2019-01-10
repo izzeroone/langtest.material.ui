@@ -18,6 +18,7 @@ import Maps from "views/Maps/Maps.jsx";
 import NotificationsPage from "views/Notifications/Notifications.jsx";
 import UpgradeToPro from "views/UpgradeToPro/UpgradeToPro.jsx";
 import HomeScreen from "../views/HomeScreen/HomeScreen";
+import ResultScreen from "../views/ResultScreen/ResultScreen";
 
 const dashboardRoutes = [
   {
@@ -47,6 +48,13 @@ const dashboardRoutes = [
     navbarName: "Quiz",
     icon: Person,
     component: Quiz
+  },
+  {
+    path: "/result",
+    sidebarName: "Result",
+    navbarName: "result",
+    icon: Person,
+    component: ResultScreen
   },
   {
     path: "/table",

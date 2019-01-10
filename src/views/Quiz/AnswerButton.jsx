@@ -10,17 +10,23 @@ const styles = {
   round: {
     backgroundColor: "#C4C4C4",
     width: "26px",
-    height: "26px"
+    height: "26px",
+    minWidth: "26px",
+    minHeight: "26px"
   },
   roundCorrect: {
     backgroundColor: "#4caf50",
     width: "26px",
-    height: "26px"
+    height: "26px",
+    minWidth: "26px",
+    minHeight: "26px"
   },
   roundIncorrect: {
     backgroundColor: "#f44336",
     width: "26px",
-    height: "26px"
+    height: "26px",
+    minWidth: "26px",
+    minHeight: "26px"
   },
   answerText: {
     color: "#000000",

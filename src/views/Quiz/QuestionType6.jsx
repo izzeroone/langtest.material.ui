@@ -14,6 +14,9 @@ import CardFooter from "components/Card/CardFooter.jsx";
 import AnswerButton from "./AnswerButton";
 import classNames from "classnames";
 import { Grid } from "@material-ui/core";
+import QuestionType4 from "./QuestionType4";
+import BaseQuestion from "./BaseQuestion";
+import AudioPlayer from "react-h5-audio-player";
 
 const styles = {
   cardCategoryWhite: {
@@ -55,7 +58,7 @@ const styles = {
   img: {
     margin: "auto",
     display: "block",
-    maxWidth: "300px",
+    maxWidth: "700px",
     maxHeight: "100%",
     align: "center"
   },
@@ -69,96 +72,57 @@ const styles = {
 };
 
 function QuestionType6(props) {
-  const { classes } = props;
+  const { classes, questions } = props;
   return (
     <div>
       <GridContainer>
         <GridItem xs={12} sm={12} md={12}>
           <Card>
             <CardHeader color="primary">
-              <h4 className={classes.cardTitleWhite}>Here is the audio</h4>
+              <h4 className={classes.cardTitleWhite}>
+                Question
+                {questions.map((value, index) => {
+                  if (index === questions.length - 1) {
+                    return " " + value.id;
+                  }
+                  return " " + value.id + ",";
+                })}{" "}
+                refer to the following
+                {questions[0].type === "3" && " conversation"}
+                {questions[0].type === "4" && " talks"}
+                {questions[0].type === "6" && " passages"}
+                {questions[0].type === "7" && " passages"}
+              </h4>
+              {questions[0].audioAsset && (
+                <AudioPlayer
+                  src={questions[0].audioAsset}
+                  onPlay={e => console.log("onPlay")}
+                />
+              )}
+              {questions[0].imageAsset && (
+                <img
+                  className={classes.img}
+                  alt="loading"
+                  src={questions[0].imageAsset}
+                />
+              )}
             </CardHeader>
             <CardBody>
-              <GridContainer>
-                <GridItem xs={12} sm={12} md={12}>
-                  <p className={classes.questionTitle}>
-                    4. In the hope of finding fresh ideas he used the internet
-                    to help him by using as many search ....... as he could
-                    discover
-                  </p>
-                </GridItem>
-              </GridContainer>
-              <GridContainer>
-                <GridItem xs={6} sm={6} md={6}>
-                  <AnswerButton title="A.Gangways " />
-                </GridItem>
-                <GridItem xs={6} sm={6} md={6}>
-                  <AnswerButton title="B. Portals" />
-                </GridItem>
-                <GridItem xs={12} sm={6} md={6}>
-                  <AnswerButton title="C. Donald" />
-                </GridItem>
-                <GridItem xs={12} sm={6} md={6}>
-                  <AnswerButton title="D. Trump" />
-                </GridItem>
-              </GridContainer>
-              <CardFooter stats />
-              <GridContainer>
-                <GridItem xs={12} sm={12} md={12}>
-                  <p className={classes.questionTitle}>
-                    4. In the hope of finding fresh ideas he used the internet
-                    to help him by using as many search ....... as he could
-                    discover
-                  </p>
-                </GridItem>
-              </GridContainer>
-              <GridContainer>
-                <GridItem xs={6} sm={6} md={6}>
-                  <AnswerButton title="A.Gangways " />
-                </GridItem>
-                <GridItem xs={6} sm={6} md={6}>
-                  <AnswerButton title="B. Portals" />
-                </GridItem>
-                <GridItem xs={12} sm={6} md={6}>
-                  <AnswerButton title="C. Donald" />
-                </GridItem>
-                <GridItem xs={12} sm={6} md={6}>
-                  <AnswerButton title="D. Trump" />
-                </GridItem>
-              </GridContainer>
-              <CardFooter stats />
-              <GridContainer>
-                <GridItem xs={12} sm={12} md={12}>
-                  <p className={classes.questionTitle}>
-                    4. In the hope of finding fresh ideas he used the internet
-                    to help him by using as many search ....... as he could
-                    discover
-                  </p>
-                </GridItem>
-              </GridContainer>
-              <GridContainer>
-                <GridItem xs={12} sm={12} md={12}>
-                  <img
-                    className={classes.img}
-                    alt="complex"
-                    src="./test1/p1_1_001.png"
-                  />
-                </GridItem>
-              </GridContainer>
-              <GridContainer>
-                <GridItem xs={6} sm={6} md={6}>
-                  <AnswerButton title="A.Gangways " />
-                </GridItem>
-                <GridItem xs={6} sm={6} md={6}>
-                  <AnswerButton title="B. Portals" />
-                </GridItem>
-                <GridItem xs={12} sm={6} md={6}>
-                  <AnswerButton title="C. Donald" />
-                </GridItem>
-                <GridItem xs={12} sm={6} md={6}>
-                  <AnswerButton title="D. Trump" />
-                </GridItem>
-              </GridContainer>
+              {questions.map((question, index) => {
+                if (index !== questions.length - 1) {
+                  return (
+                    <div key={index}>
+                      <BaseQuestion question={question} />
+                      <CardFooter stats />
+                    </div>
+                  );
+                }
+                return (
+                  <div key={index}>
+                    <BaseQuestion question={question} />
+                  </div>
+                );
+              })}
             </CardBody>
           </Card>
         </GridItem>

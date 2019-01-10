@@ -28,7 +28,7 @@ const styles = {
     color: "#FFFFFF",
     marginTop: "0px",
     minHeight: "auto",
-    fontWeight: "300",
+    fontWeight: "400",
     fontFamily: "'Roboto', 'Helvetica', 'Arial', sans-serif",
     marginBottom: "3px",
     textDecoration: "none"
@@ -70,7 +70,8 @@ const styles = {
 };
 
 function QuestionType1(props) {
-  const { classes } = props;
+  const { classes, question } = props;
+  const md = 12 / question.answer.length;
   return (
     <div>
       <GridContainer>
@@ -78,41 +79,40 @@ function QuestionType1(props) {
           <Card>
             <CardHeader color="primary">
               <h4 className={classes.cardTitleWhite}>
-                Question 1 refer to the following audio
+                Question {question.id} refer to the following audio
               </h4>
-              <AudioPlayer
-                src="./audio/p1_1_001.mp3"
-                onPlay={e => console.log("onPlay")}
-              />
+              {question.audioAsset && (
+                <AudioPlayer
+                  src={question.audioAsset}
+                  onPlay={e => console.log("onPlay")}
+                />
+              )}
             </CardHeader>
             <CardBody>
               <GridContainer>
                 <GridItem xs={12} sm={12} md={12}>
-                  <p className={classes.questionTitle}>1</p>
+                  <p className={classes.questionTitle}>{question.id}</p>
                 </GridItem>
               </GridContainer>
               <GridContainer>
                 <GridItem xs={12} sm={12} md={12}>
-                  <img
-                    className={classes.img}
-                    alt="complex"
-                    src="./test1/p1_1_001.png"
-                  />
+                  {question.imageAsset && (
+                    <img
+                      className={classes.img}
+                      alt="loading"
+                      src={question.imageAsset}
+                    />
+                  )}
                 </GridItem>
               </GridContainer>
               <GridContainer>
-                <GridItem xs={6} sm={6} md={3}>
-                  <AnswerButton title="A" />
-                </GridItem>
-                <GridItem xs={6} sm={6} md={3}>
-                  <AnswerButton title="B" />
-                </GridItem>
-                <GridItem xs={12} sm={12} md={3}>
-                  <AnswerButton title="C" />
-                </GridItem>
-                <GridItem xs={12} sm={12} md={3}>
-                  <AnswerButton title="D" />
-                </GridItem>
+                {question.answer.map((answer, id) => {
+                  return (
+                    <GridItem key={id} xs={6} sm={6} md={md}>
+                      <AnswerButton title={answer} />
+                    </GridItem>
+                  );
+                })}
               </GridContainer>
             </CardBody>
           </Card>

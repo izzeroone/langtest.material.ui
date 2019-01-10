@@ -14,17 +14,7 @@ import CardFooter from "components/Card/CardFooter.jsx";
 import AnswerButton from "./AnswerButton";
 import classNames from "classnames";
 import { Grid } from "@material-ui/core";
-import QuestionType1 from "./QuestionType1";
-import QuestionType4 from "./QuestionType4";
-import QuestionType6 from "./QuestionType6";
-import QuestionDataPart1 from "./QuestionDataPart1";
-import QuestionDataPart2 from "./QuestionDataPart2";
-import QuestionDataPart3 from "./QuestionDataPart3";
-import QuestionDataPart4 from "./QuestionDataPart4";
-import QuestionDataPart5 from "./QuestionDataPart5";
-import QuestionDataPart6 from "./QuestionDataPart6";
-import QuestionDataPart7 from "./QuestionDataPart7";
-import Indicator from "./Indicator";
+
 const styles = {
   cardCategoryWhite: {
     color: "rgba(255,255,255,.62)",
@@ -37,7 +27,7 @@ const styles = {
     color: "#FFFFFF",
     marginTop: "0px",
     minHeight: "auto",
-    fontWeight: "300",
+    fontWeight: "400",
     fontFamily: "'Roboto', 'Helvetica', 'Arial', sans-serif",
     marginBottom: "3px",
     textDecoration: "none"
@@ -78,48 +68,44 @@ const styles = {
   }
 };
 
-function Quiz(props) {
-  const { classes } = props;
+function BaseQuestion(props) {
+  const { classes, question } = props;
   return (
     <div>
-      <Indicator />
       <GridContainer>
-        {QuestionDataPart1.map((question, id) => {
-          return (
-            <GridItem key={id} xs={12} sm={12} md={12}>
-              <QuestionType1 question={question} />;
+        <GridItem xs={12} sm={12} md={12}>
+          <GridContainer>
+            <GridItem xs={12} sm={12} md={12}>
+              <p className={classes.questionTitle}>
+                {question.id}. {question.question}
+              </p>
             </GridItem>
-          );
-        })}
-        {QuestionDataPart2.map((question, id) => {
-          return (
-            <GridItem key={id} xs={12} sm={12} md={12}>
-              <QuestionType1 question={question} />;
+          </GridContainer>
+          <GridContainer>
+            <GridItem xs={12} sm={12} md={12}>
+              {question.type === "3" &&
+                question.imageAsset && (
+                  <img
+                    className={classes.img}
+                    alt="loading"
+                    src={question.imageAsset}
+                  />
+                )}
             </GridItem>
-          );
-        })}
-        {QuestionDataPart5.map((question, id) => {
-          return (
-            <GridItem key={id} xs={12} sm={12} md={12}>
-              <QuestionType4 question={question} />;
-            </GridItem>
-          );
-        })}
-        <GridItem xs={12} sm={12} md={12}>
-          <QuestionType6 questions={QuestionDataPart3} />
-        </GridItem>
-        <GridItem xs={12} sm={12} md={12}>
-          <QuestionType6 questions={QuestionDataPart4} />
-        </GridItem>
-        <GridItem xs={12} sm={12} md={12}>
-          <QuestionType6 questions={QuestionDataPart6} />
-        </GridItem>
-        <GridItem xs={12} sm={12} md={12}>
-          <QuestionType6 questions={QuestionDataPart7} />
+          </GridContainer>
+          <GridContainer>
+            {question.answer.map((answer, id) => {
+              return (
+                <GridItem key={id} xs={6} sm={6} md={3}>
+                  <AnswerButton title={answer} />
+                </GridItem>
+              );
+            })}
+          </GridContainer>
         </GridItem>
       </GridContainer>
     </div>
   );
 }
 
-export default withStyles(styles)(Quiz);
+export default withStyles(styles)(BaseQuestion);
