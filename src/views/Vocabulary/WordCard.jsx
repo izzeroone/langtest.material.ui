@@ -39,7 +39,9 @@ import {
   completedTasksChart
 } from "variables/charts.jsx";
 import { Grid } from "@material-ui/core";
-
+import ReactCardFlipper from "react-card-flipper";
+import FlipMotion from "react-flip-motion";
+import Translator from "./Translator";
 const styles = {
   cardCategory: {
     color: "#999999",
@@ -95,19 +97,31 @@ const styles = {
 };
 class WordCard extends React.Component {
   state = {
-    value: 0
+    word: false,
+    text: []
   };
-  handleChange = (event, value) => {
-    this.setState({ value });
+  componentDidMount() {
+    const { word } = this.props;
+
+    this.setState({
+      text: [word.word]
+    });
+  }
+  handleChange = () => {
+    this.setState({ word: !this.state.word });
+    // this.setState({
+    //   text: [this.props.word.id]
+    // });
   };
 
-  handleChangeIndex = index => {
-    this.setState({ value: index });
-  };
   render() {
     const { classes, word } = this.props;
     return (
-      <Card>
+      <Card
+        onClick={() => {
+          this.handleChange();
+        }}
+      >
         <CardHeader>
           <Grid
             container
@@ -116,7 +130,8 @@ class WordCard extends React.Component {
             alignItems="center"
           >
             <Grid item direction="column" justify="center" alignItems="center">
-              <p className={classes.cardTitle}>{word.word}</p>
+              <Translator firstMsg="Tasdasde" secondMsg="Alasdasdgrabe." />
+              <p className={classes.cardTitle} />
               <p className={classes.cardCategory}>
                 <Grid
                   container

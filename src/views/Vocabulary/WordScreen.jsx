@@ -41,6 +41,7 @@ import {
 } from "variables/charts.jsx";
 import TopicCard from "./VocabularyCard";
 import WordCard from "./WordCard";
+import { Grid } from "@material-ui/core";
 
 const styles = {
   upArrowCardCategory: {
@@ -185,17 +186,30 @@ class WordScreen extends React.Component {
   render() {
     const { classes } = this.props;
     return (
-      <div>
+      <Grid container direction={"column"}>
         <GridContainer className={classes.card}>
-          {topic2.map((value, id) => {
-            return (
-              <GridItem key={id} xs={12} sm={6} md={4}>
-                <WordCard word={value} />
-              </GridItem>
-            );
-          })}
+          <GridItem xs={12} sm={6} md={4}>
+            <WordCard word={topic2[0]} />
+          </GridItem>
+          <GridItem xs={12} sm={6} md={4}>
+            <WordCard word={topic2[1]} />
+          </GridItem>
+          <GridItem xs={12} sm={6} md={4}>
+            <WordCard word={topic2[2]} />
+          </GridItem>
         </GridContainer>
-      </div>
+        <GridContainer className={classes.card}>
+          <GridItem xs={12} sm={6} md={4}>
+            <WordCard word={topic2[0]} />
+          </GridItem>
+          <GridItem xs={12} sm={6} md={4}>
+            <WordCard word={topic2[1]} />
+          </GridItem>
+          <GridItem xs={12} sm={6} md={4}>
+            <WordCard word={topic2[2]} />
+          </GridItem>
+        </GridContainer>
+      </Grid>
     );
   }
 }

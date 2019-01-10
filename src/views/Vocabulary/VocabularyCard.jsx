@@ -31,7 +31,6 @@ import CardBody from "components/Card/CardBody.jsx";
 import CardFooter from "components/Card/CardFooter.jsx";
 import { Progress } from "react-sweet-progress";
 import { bugs, website, server } from "variables/general.jsx";
-
 import {
   dailySalesChart,
   emailsSubscriptionChart,
@@ -75,14 +74,15 @@ const styles = {
 };
 class TopicCard extends React.Component {
   state = {
-    value: 0
-  };
-  handleChange = (event, value) => {
-    this.setState({ value });
+    value: 0,
+    isFlip: false
   };
 
-  handleChangeIndex = index => {
-    this.setState({ value: index });
+  handleClick = e => {
+    e.preventDefault();
+    this.setState({
+      isFlip: !this.state.isFlip
+    });
   };
   render() {
     const { classes, topic } = this.props;
