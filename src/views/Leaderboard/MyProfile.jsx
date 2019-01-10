@@ -6,14 +6,8 @@ import ChartistGraph from "react-chartist";
 import withStyles from "@material-ui/core/styles/withStyles";
 import Icon from "@material-ui/core/Icon";
 // @material-ui/icons
-import Store from "@material-ui/icons/Store";
-import Warning from "@material-ui/icons/Warning";
-import DateRange from "@material-ui/icons/DateRange";
-import LocalOffer from "@material-ui/icons/LocalOffer";
-import Update from "@material-ui/icons/Update";
 import ArrowUpward from "@material-ui/icons/ArrowUpward";
 import AccessTime from "@material-ui/icons/AccessTime";
-import Accessibility from "@material-ui/icons/Accessibility";
 import BugReport from "@material-ui/icons/BugReport";
 import Code from "@material-ui/icons/Code";
 import Cloud from "@material-ui/icons/Cloud";
@@ -31,22 +25,28 @@ import CardBody from "components/Card/CardBody.jsx";
 import CardFooter from "components/Card/CardFooter.jsx";
 import { Progress } from "react-sweet-progress";
 import { bugs, website, server } from "variables/general.jsx";
-import TopicData from "./TopicData";
-import topic2 from "./VocabularyList";
+import CardAvatar from "components/Card/CardAvatar.jsx";
+import avatar from "assets/img/faces/marc.jpg";
 import Button from "components/CustomButtons/Button.jsx";
 import {
   dailySalesChart,
   emailsSubscriptionChart,
   completedTasksChart
 } from "variables/charts.jsx";
-import TopicCard from "./VocabularyCard";
-import WordCard from "./WordCard";
 import { Grid } from "@material-ui/core";
+import classNames from "classnames";
 
 const styles = {
+  upArrowCardCategory: {
+    width: "16px",
+    height: "16px"
+  },
   profileCard: {
     marginLeft: "160px",
     marginRight: "160px"
+  },
+  blueBackground: {
+    backgroundColor: "#019AE8"
   },
   smallVioletGreyDot: {
     width: "10px",
@@ -84,11 +84,10 @@ const styles = {
   cardCategory: {
     color: "#999999",
     margin: "0",
-    fontSize: "28px",
+    fontSize: "14px",
     marginTop: "0",
     paddingTop: "10px",
-    marginBottom: "0",
-    textAlign: "center"
+    marginBottom: "0"
   },
   cardCategoryWhite: {
     color: "rgba(255,255,255,.62)",
@@ -97,17 +96,15 @@ const styles = {
     marginTop: "0",
     marginBottom: "0"
   },
-  topicTitle: {
-    color: "#00BCD4",
+  cardTitle: {
+    color: "#3C4858",
     marginTop: "0px",
     minHeight: "auto",
     fontWeight: "400",
     fontFamily: "'Roboto', 'Helvetica', 'Arial', sans-serif",
-    marginBottom: "16px",
-    marginLeft: "16px",
+    marginBottom: "3px",
     textDecoration: "none",
-    textAlign: "center",
-    fontSize: "40px",
+    textAlign: "left",
     "& small": {
       color: "#777",
       fontWeight: "400",
@@ -116,7 +113,7 @@ const styles = {
     }
   },
   profileTitle: {
-    color: "#0099DA",
+    color: "white",
     marginTop: "0px",
     minHeight: "auto",
     fontWeight: "400",
@@ -133,7 +130,7 @@ const styles = {
     }
   },
   cardSmallInfo: {
-    color: "#3C4858",
+    color: "white",
     marginTop: "0px",
     minHeight: "auto",
     fontWeight: "400",
@@ -142,30 +139,68 @@ const styles = {
     textDecoration: "none",
     textAlign: "left"
   },
+  cardTitleWhite: {
+    color: "#FFFFFF",
+    marginTop: "0px",
+    minHeight: "auto",
+    fontWeight: "300",
+    fontFamily: "'Roboto', 'Helvetica', 'Arial', sans-serif",
+    marginBottom: "3px",
+    textDecoration: "none",
+    "& small": {
+      color: "#777",
+      fontWeight: "400",
+      lineHeight: "1"
+    }
+  },
   img: {
     display: "block",
-    maxWidth: "280px",
-    maxHeight: "218px",
+    maxWidth: "100px",
+    maxHeight: "100px",
+    width: "100px",
+    height: "100px",
+    borderRadius: "50%",
     align: "center",
     objectFix: "cover",
     margin: "auto"
   },
-  card: {
-    marginLeft: "100px",
-    marginRight: "100px"
+  icon: {
+    transform: "scale(1.2)",
+    marginRight: "10px",
+    color: "white"
   },
-  avatar: {
-    display: "block",
-    width: "140px",
-    height: "140px",
-    maxWidth: "140px",
-    maxHeight: "140px",
-    itemAlign: "center",
-    objectFix: "cover",
-    borderRadius: "10px"
+  item: {
+    color: "white",
+    minHeight: "auto",
+    fontWeight: "400",
+    fontFamily: "'Roboto', 'Helvetica', 'Arial', sans-serif",
+    textDecoration: "none",
+    textAlign: "left",
+    verticalAlign: "center"
+  },
+  positionText: {
+    color: "white",
+    marginTop: "0px",
+    minHeight: "auto",
+    fontWeight: "400",
+    fontFamily: "'Roboto', 'Helvetica', 'Arial', sans-serif",
+    marginBottom: "3px",
+    textDecoration: "none",
+    textAlign: "right",
+    "& small": {
+      color: "#777",
+      fontWeight: "400",
+      lineHeight: "1",
+      fontStyle: "normal"
+    }
+  },
+  cardMargin: {
+    marginTop: "4px",
+    marginBottom: "4px"
   }
 };
-class WordScreen extends React.Component {
+
+class MyProfile extends React.Component {
   state = {
     value: 0
   };
@@ -177,101 +212,55 @@ class WordScreen extends React.Component {
     this.setState({ value: index });
   };
   render() {
-    const { classes, history } = this.props;
+    const { classes } = this.props;
     return (
-      <Grid container direction={"column"}>
-        <Grid
-          style={{ paddingLeft: "160px", paddingRight: "160px" }}
-          container
-          direction="row"
-        >
+      <Grid className={classes.profileCard}>
+        <Card className={classes.cardMargin}>
           <Grid
             container
-            xs={12}
-            sm={6}
-            md={6}
             direction="row"
-            alignItems="center"
             justify="center"
-          >
-            <img
-              className={classes.avatar}
-              src="https://www.iamexpat.nl/sites/default/files/styles/article--full/public/oldimages/67cddc45e6e8c166afe752d0b5e0866c1441700680.jpg?itok=1VUc7csy"
-              alt="..."
-            />
-            <Grid item direction="column" alignItems="center" justify="center">
-              <p className={classes.topicTitle}>Contract</p>
-              <p className={classes.cardCategory}>12 words</p>
-            </Grid>
-          </Grid>
-
-          <Grid
-            container
-            xs={12}
-            sm={6}
-            md={6}
-            direction="row"
             alignItems="center"
-            justify="center"
+            className={classes.blueBackground}
           >
-            <Button
-              onClick={() => {
-                history.push("/learn");
-              }}
-              color="success"
-            >
-              Learn word
-            </Button>
-            <Button
-              onClick={() => {
-                history.push("/quiz");
-              }}
-              color="primary"
-            >
-              Practice
-            </Button>
+            <GridItem xs={12} sm={12} md={2}>
+              <img className={classes.img} src={avatar} alt="..." />
+            </GridItem>
+            <GridItem xs={12} sm={12} md={7}>
+              <CardBody>
+                <h3 className={classes.profileTitle}>Alec Thompson</h3>
+                <p className={classes.cardSmallInfo}>
+                  Time spend: 1212 minutes
+                </p>
+                <Grid
+                  container
+                  direction="row"
+                  justify="flex-st"
+                  alignItems="center"
+                >
+                  <Icon className={classes.icon}>mood</Icon>
+                  <span className={classNames(classes.icon, classes.item)}>
+                    12
+                  </span>
+                  <Icon className={classes.icon}>mood_bad</Icon>
+                  <span className={classNames(classes.icon, classes.item)}>
+                    12
+                  </span>
+                </Grid>
+              </CardBody>
+            </GridItem>
+            <GridItem xs={12} sm={12} md={3}>
+              <h1 className={classes.positionText}>1st</h1>
+            </GridItem>
           </Grid>
-        </Grid>
-        <GridContainer className={classes.card}>
-          <GridItem xs={12} sm={6} md={4}>
-            <WordCard word={topic2[0]} />
-          </GridItem>
-          <GridItem xs={12} sm={6} md={4}>
-            <WordCard word={topic2[1]} />
-          </GridItem>
-          <GridItem xs={12} sm={6} md={4}>
-            <WordCard word={topic2[2]} />
-          </GridItem>
-        </GridContainer>
-        <GridContainer className={classes.card}>
-          <GridItem xs={12} sm={6} md={4}>
-            <WordCard word={topic2[3]} />
-          </GridItem>
-          <GridItem xs={12} sm={6} md={4}>
-            <WordCard word={topic2[4]} />
-          </GridItem>
-          <GridItem xs={12} sm={6} md={4}>
-            <WordCard word={topic2[5]} />
-          </GridItem>
-        </GridContainer>
-        <GridContainer className={classes.card}>
-          <GridItem xs={12} sm={6} md={4}>
-            <WordCard word={topic2[6]} />
-          </GridItem>
-          <GridItem xs={12} sm={6} md={4}>
-            <WordCard word={topic2[7]} />
-          </GridItem>
-          <GridItem xs={12} sm={6} md={4}>
-            <WordCard word={topic2[8]} />
-          </GridItem>
-        </GridContainer>
+        </Card>
       </Grid>
     );
   }
 }
 
-WordScreen.propTypes = {
+MyProfile.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(WordScreen);
+export default withStyles(styles)(MyProfile);

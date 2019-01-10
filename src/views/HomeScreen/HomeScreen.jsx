@@ -37,6 +37,7 @@ import {
 import dashboardStyle from "assets/jss/material-dashboard-react/views/dashboardStyle.jsx";
 import { Grid } from "@material-ui/core";
 import classNames from "classnames";
+import { withRouter } from "react-router-dom";
 class HomeScreen extends React.Component {
   state = {
     value: 0
@@ -47,6 +48,10 @@ class HomeScreen extends React.Component {
 
   handleChangeIndex = index => {
     this.setState({ value: index });
+  };
+
+  gotoQuiz = () => {
+    this.props.history.push("./quiz");
   };
   render() {
     const { classes } = this.props;
@@ -75,7 +80,14 @@ class HomeScreen extends React.Component {
                 </CardBody>
               </GridItem>
               <GridItem xs={12} sm={12} md={4}>
-                <Button color="danger" round size="lg">
+                <Button
+                  color="danger"
+                  round
+                  size="lg"
+                  onClick={() => {
+                    this.gotoQuiz();
+                  }}
+                >
                   <Icon style={{ marginRight: "20px" }}>done</Icon>
                   BEGIN TEST
                 </Button>
@@ -85,7 +97,11 @@ class HomeScreen extends React.Component {
         </Grid>
         <GridContainer>
           <GridItem xs={12} sm={6} md={4}>
-            <Card>
+            <Card
+              onClick={() => {
+                this.gotoQuiz();
+              }}
+            >
               <CardHeader color="primary" stats icon>
                 <CardIcon color="primary">
                   <Icon>photo</Icon>
@@ -111,7 +127,11 @@ class HomeScreen extends React.Component {
             </Card>
           </GridItem>
           <GridItem xs={12} sm={6} md={4}>
-            <Card>
+            <Card
+              onClick={() => {
+                this.gotoQuiz();
+              }}
+            >
               <CardHeader color="success" stats icon>
                 <CardIcon color="success">
                   <Icon>textsms</Icon>
@@ -137,7 +157,11 @@ class HomeScreen extends React.Component {
             </Card>
           </GridItem>
           <GridItem xs={12} sm={6} md={4}>
-            <Card>
+            <Card
+              onClick={() => {
+                this.gotoQuiz();
+              }}
+            >
               <CardHeader color="warning" stats icon>
                 <CardIcon color="warning">
                   <Icon>question_answer</Icon>
@@ -165,7 +189,11 @@ class HomeScreen extends React.Component {
         </GridContainer>
         <GridContainer>
           <GridItem xs={12} sm={6} md={4}>
-            <Card>
+            <Card
+              onClick={() => {
+                this.gotoQuiz();
+              }}
+            >
               <CardHeader color="danger" stats icon>
                 <CardIcon color="danger">
                   <Icon>record_voice_over</Icon>
@@ -191,7 +219,11 @@ class HomeScreen extends React.Component {
             </Card>
           </GridItem>
           <GridItem xs={12} sm={6} md={4}>
-            <Card>
+            <Card
+              onClick={() => {
+                this.gotoQuiz();
+              }}
+            >
               <CardHeader color="warning" stats icon>
                 <CardIcon color="warning">
                   <Icon>space_bar</Icon>
@@ -217,7 +249,11 @@ class HomeScreen extends React.Component {
             </Card>
           </GridItem>
           <GridItem xs={12} sm={6} md={4}>
-            <Card>
+            <Card
+              onClick={() => {
+                this.gotoQuiz();
+              }}
+            >
               <CardHeader color="rose" stats icon>
                 <CardIcon color="rose">
                   <Icon>border_color</Icon>
@@ -245,7 +281,11 @@ class HomeScreen extends React.Component {
         </GridContainer>
         <GridContainer>
           <GridItem xs={12} sm={6} md={4}>
-            <Card>
+            <Card
+              onClick={() => {
+                this.gotoQuiz();
+              }}
+            >
               <CardHeader color="primary" stats icon>
                 <CardIcon color="primary">
                   <Icon>notes</Icon>
@@ -280,4 +320,4 @@ HomeScreen.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(dashboardStyle)(HomeScreen);
+export default withRouter(withStyles(dashboardStyle)(HomeScreen));

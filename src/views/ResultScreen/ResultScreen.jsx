@@ -36,6 +36,7 @@ import {
 
 import { Grid } from "@material-ui/core";
 import classNames from "classnames";
+import CircularProgressbar from "react-circular-progressbar";
 
 const styles = {
   profileTitle: {
@@ -118,6 +119,10 @@ const styles = {
     clear: "both",
     marginBottom: "5px",
     marginTop: "5px"
+  },
+  progress: {
+    width: "200px",
+    height: "200px"
   }
 };
 
@@ -157,14 +162,16 @@ class ResultScreen extends React.Component {
                   <h1 className={classes.profileTitle}>Your result</h1>
                 </GridItem>
                 <GridItem xs={12} sm={12} md={4}>
-                  <Progress
-                    type="circle"
-                    width={150}
-                    percent={this.state.percent}
-                    style={{
-                      backgroundColor: "white",
-                      borderRadius: "75px",
-                      color: "black"
+                  <CircularProgressbar
+                    className={classes.progress}
+                    percentage={50}
+                    initialAnimation
+                    background
+                    text="50%"
+                    styles={{
+                      background: {
+                        fill: "white"
+                      }
                     }}
                   />
                 </GridItem>

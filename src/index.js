@@ -5,6 +5,8 @@ import { Router, Route, Switch } from "react-router-dom";
 import "assets/css/material-dashboard-react.css?v=1.5.0";
 import "./index.css";
 import "react-sweet-progress/lib/style.css";
+import "react-circular-progressbar/dist/styles.css";
+import "rc-slider/assets/index.css";
 import indexRoutes from "routes/index.jsx";
 import ResultScreen from "./views/ResultScreen/ResultScreen";
 const hist = createBrowserHistory();

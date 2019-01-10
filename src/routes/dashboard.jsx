@@ -22,20 +22,14 @@ import ResultScreen from "../views/ResultScreen/ResultScreen";
 import Vocabulary from "../views/Vocabulary/Vocabulary";
 import WordScreen from "../views/Vocabulary/WordScreen";
 import LearnWordScreen from "../views/Vocabulary/LearnWordScreen";
+import Leaderboard from "../views/Leaderboard/Leaderboard";
 
 const dashboardRoutes = [
-  {
-    path: "/dashboard",
-    sidebarName: "Dashboard",
-    navbarName: "Material Dashboard",
-    icon: Dashboard,
-    component: DashboardPage
-  },
   {
     path: "/home",
     sidebarName: "Home",
     navbarName: "Home",
-    icon: Person,
+    icon: Dashboard,
     component: HomeScreen
   },
   {
@@ -50,14 +44,16 @@ const dashboardRoutes = [
     sidebarName: "Quiz",
     navbarName: "Quiz",
     icon: Person,
-    component: Quiz
+    component: Quiz,
+    notShow: true
   },
   {
     path: "/result",
     sidebarName: "Result",
     navbarName: "result",
     icon: Person,
-    component: ResultScreen
+    component: ResultScreen,
+    notShow: true
   },
   {
     path: "/topic",
@@ -71,58 +67,25 @@ const dashboardRoutes = [
     sidebarName: "Word",
     navbarName: "Word",
     icon: Person,
-    component: WordScreen
+    component: WordScreen,
+    notShow: true
   },
   {
     path: "/learn",
     sidebarName: "Learn",
     navbarName: "Learn",
     icon: Person,
-    component: LearnWordScreen
+    component: LearnWordScreen,
+    notShow: true
   },
   {
-    path: "/table",
-    sidebarName: "Table List",
-    navbarName: "Table List",
-    icon: "content_paste",
-    component: TableList
+    path: "/leaderboard",
+    sidebarName: "Leader board",
+    navbarName: "Leader board",
+    icon: Person,
+    component: Leaderboard
   },
-  {
-    path: "/typography",
-    sidebarName: "Typography",
-    navbarName: "Typography",
-    icon: LibraryBooks,
-    component: Typography
-  },
-  {
-    path: "/icons",
-    sidebarName: "Icons",
-    navbarName: "Icons",
-    icon: BubbleChart,
-    component: Icons
-  },
-  {
-    path: "/maps",
-    sidebarName: "Maps",
-    navbarName: "Map",
-    icon: LocationOn,
-    component: Maps
-  },
-  {
-    path: "/notifications",
-    sidebarName: "Notifications",
-    navbarName: "Notifications",
-    icon: Notifications,
-    component: NotificationsPage
-  },
-  {
-    path: "/upgrade-to-pro",
-    sidebarName: "Upgrade To PRO",
-    navbarName: "Upgrade To PRO",
-    icon: Unarchive,
-    component: UpgradeToPro
-  },
-  { redirect: true, path: "/", to: "/dashboard", navbarName: "Redirect" }
+  { redirect: true, path: "/", to: "/home", navbarName: "Redirect" }
 ];
 
 export default dashboardRoutes;

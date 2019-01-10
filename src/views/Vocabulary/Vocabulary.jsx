@@ -225,6 +225,10 @@ class Vocabulary extends React.Component {
   handleChangeIndex = index => {
     this.setState({ value: index });
   };
+
+  gotoWord = () => {
+    this.props.history.push("/word");
+  };
   render() {
     const { classes } = this.props;
     return (
@@ -277,7 +281,15 @@ class Vocabulary extends React.Component {
         <GridContainer>
           {TopicData.map((value, id) => {
             return (
-              <GridItem key={id} xs={12} sm={6} md={4}>
+              <GridItem
+                onClick={() => {
+                  this.gotoWord();
+                }}
+                xs={12}
+                sm={6}
+                md={4}
+                key={id}
+              >
                 <TopicCard topic={value} />
               </GridItem>
             );

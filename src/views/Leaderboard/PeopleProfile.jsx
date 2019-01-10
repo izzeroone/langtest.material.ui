@@ -6,14 +6,8 @@ import ChartistGraph from "react-chartist";
 import withStyles from "@material-ui/core/styles/withStyles";
 import Icon from "@material-ui/core/Icon";
 // @material-ui/icons
-import Store from "@material-ui/icons/Store";
-import Warning from "@material-ui/icons/Warning";
-import DateRange from "@material-ui/icons/DateRange";
-import LocalOffer from "@material-ui/icons/LocalOffer";
-import Update from "@material-ui/icons/Update";
 import ArrowUpward from "@material-ui/icons/ArrowUpward";
 import AccessTime from "@material-ui/icons/AccessTime";
-import Accessibility from "@material-ui/icons/Accessibility";
 import BugReport from "@material-ui/icons/BugReport";
 import Code from "@material-ui/icons/Code";
 import Cloud from "@material-ui/icons/Cloud";
@@ -31,25 +25,28 @@ import CardBody from "components/Card/CardBody.jsx";
 import CardFooter from "components/Card/CardFooter.jsx";
 import { Progress } from "react-sweet-progress";
 import { bugs, website, server } from "variables/general.jsx";
-import TopicData from "./TopicData";
-import topic2 from "./VocabularyList";
+import CardAvatar from "components/Card/CardAvatar.jsx";
+import avatar from "assets/img/faces/marc.jpg";
 import Button from "components/CustomButtons/Button.jsx";
 import {
   dailySalesChart,
   emailsSubscriptionChart,
   completedTasksChart
 } from "variables/charts.jsx";
-import TopicCard from "./VocabularyCard";
-import WordCard from "./WordCard";
 import { Grid } from "@material-ui/core";
-import LearnWordCard from "./LearnWordCard";
-import CircularProgressbar from "react-circular-progressbar";
-import Slider, { Range } from "rc-slider";
+import classNames from "classnames";
 
 const styles = {
+  upArrowCardCategory: {
+    width: "16px",
+    height: "16px"
+  },
   profileCard: {
     marginLeft: "160px",
     marginRight: "160px"
+  },
+  blueBackground: {
+    backgroundColor: "#019AE8"
   },
   smallVioletGreyDot: {
     width: "10px",
@@ -87,11 +84,10 @@ const styles = {
   cardCategory: {
     color: "#999999",
     margin: "0",
-    fontSize: "28px",
+    fontSize: "14px",
     marginTop: "0",
     paddingTop: "10px",
-    marginBottom: "0",
-    textAlign: "center"
+    marginBottom: "0"
   },
   cardCategoryWhite: {
     color: "rgba(255,255,255,.62)",
@@ -100,17 +96,15 @@ const styles = {
     marginTop: "0",
     marginBottom: "0"
   },
-  topicTitle: {
-    color: "#00BCD4",
+  cardTitle: {
+    color: "#3C4858",
     marginTop: "0px",
     minHeight: "auto",
     fontWeight: "400",
     fontFamily: "'Roboto', 'Helvetica', 'Arial', sans-serif",
-    marginBottom: "16px",
-    marginLeft: "16px",
+    marginBottom: "3px",
     textDecoration: "none",
-    textAlign: "center",
-    fontSize: "40px",
+    textAlign: "left",
     "& small": {
       color: "#777",
       fontWeight: "400",
@@ -119,7 +113,7 @@ const styles = {
     }
   },
   profileTitle: {
-    color: "#0099DA",
+    color: "#3C4858",
     marginTop: "0px",
     minHeight: "auto",
     fontWeight: "400",
@@ -145,38 +139,67 @@ const styles = {
     textDecoration: "none",
     textAlign: "left"
   },
+  cardTitleWhite: {
+    color: "#FFFFFF",
+    marginTop: "0px",
+    minHeight: "auto",
+    fontWeight: "300",
+    fontFamily: "'Roboto', 'Helvetica', 'Arial', sans-serif",
+    marginBottom: "3px",
+    textDecoration: "none",
+    "& small": {
+      color: "#777",
+      fontWeight: "400",
+      lineHeight: "1"
+    }
+  },
   img: {
     display: "block",
-    maxWidth: "280px",
-    maxHeight: "218px",
+    maxWidth: "100px",
+    maxHeight: "100px",
+    width: "100px",
+    height: "100px",
+    borderRadius: "50%",
     align: "center",
     objectFix: "cover",
     margin: "auto"
   },
-  card: {
-    marginLeft: "100px",
-    marginRight: "100px"
+  icon: {
+    transform: "scale(1.2)",
+    marginRight: "10px"
   },
-  avatar: {
-    display: "block",
-    width: "140px",
-    height: "140px",
-    maxWidth: "140px",
-    maxHeight: "140px",
-    itemAlign: "center",
-    objectFix: "cover",
-    borderRadius: "10px"
+  item: {
+    color: "#3C4858",
+    minHeight: "auto",
+    fontWeight: "400",
+    fontFamily: "'Roboto', 'Helvetica', 'Arial', sans-serif",
+    textDecoration: "none",
+    textAlign: "left",
+    verticalAlign: "center"
   },
-  cardPadding: {
-    paddingLeft: "180px",
-    paddingRight: "180px"
+  positionText: {
+    color: "#3C4858",
+    marginTop: "0px",
+    minHeight: "auto",
+    fontWeight: "400",
+    fontFamily: "'Roboto', 'Helvetica', 'Arial', sans-serif",
+    marginBottom: "3px",
+    textDecoration: "none",
+    textAlign: "right",
+    "& small": {
+      color: "#777",
+      fontWeight: "400",
+      lineHeight: "1",
+      fontStyle: "normal"
+    }
   },
-  progress: {
-    width: "120px",
-    height: "120px"
+  cardMargin: {
+    marginTop: "4px",
+    marginBottom: "4px"
   }
 };
-class LearnWordScreen extends React.Component {
+
+class PeopleProfile extends React.Component {
   state = {
     value: 0
   };
@@ -188,42 +211,57 @@ class LearnWordScreen extends React.Component {
     this.setState({ value: index });
   };
   render() {
-    const { classes } = this.props;
+    const { classes, people } = this.props;
     return (
-      <Grid
-        className={classes.cardPadding}
-        container
-        direction={"column"}
-        alignItems="center"
-        justify="center"
-      >
-        <LearnWordCard word={topic2[0]} />
-        <div>
-          <CircularProgressbar
-            className={classes.progress}
-            percentage={50}
-            initialAnimation
-            background
-            styles={{
-              background: {
-                fill: "white"
-              }
-            }}
-          />
-        </div>
-        <Slider
-          railStyle={{ height: "16px", color: "#019AE8" }}
-          trackStyle={{ height: "16px", backgroundColor: "#019AE8" }}
-          dotStyle={{ height: "16px" }}
-          style={{ marginTop: "16px" }}
-        />
-      </Grid>
+      <div>
+        <Grid className={classes.profileCard}>
+          <Card className={classes.cardMargin}>
+            <Grid
+              container
+              direction="row"
+              justify="center"
+              alignItems="center"
+            >
+              <GridItem xs={12} sm={12} md={2}>
+                <img className={classes.img} src={avatar} alt="..." />
+              </GridItem>
+              <GridItem xs={12} sm={12} md={7}>
+                <CardBody>
+                  <h3 className={classes.profileTitle}>{people.name}</h3>
+                  <p className={classes.cardSmallInfo}>
+                    Time spend: {people.timeSpent} minutes
+                  </p>
+                  <Grid
+                    container
+                    direction="row"
+                    justify="flex-st"
+                    alignItems="center"
+                  >
+                    <Icon className={classes.icon}>mood</Icon>
+                    <span className={classNames(classes.icon, classes.item)}>
+                      {people.correctAnswer}
+                    </span>
+                    <Icon className={classes.icon}>mood_bad</Icon>
+                    <span className={classNames(classes.icon, classes.item)}>
+                      {people.incorrectAnswer}
+                    </span>
+                  </Grid>
+                </CardBody>
+              </GridItem>
+              <GridItem xs={12} sm={12} md={3}>
+                <h1 className={classes.positionText}>{people.ranking}</h1>
+              </GridItem>
+            </Grid>
+          </Card>
+        </Grid>
+      </div>
     );
   }
 }
 
-LearnWordScreen.propTypes = {
-  classes: PropTypes.object.isRequired
+PeopleProfile.propTypes = {
+  classes: PropTypes.object.isRequired,
+  people: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(LearnWordScreen);
+export default withStyles(styles)(PeopleProfile);

@@ -144,7 +144,7 @@ class WordCard extends React.Component {
               </p>
             </Grid>
             <Grid item>
-              <img className={classes.img} src="./images/img/t1w1.jpg" />
+              <img className={classes.img} src={word.img} />
             </Grid>
           </Grid>
         </CardHeader>
