@@ -39,6 +39,7 @@ import { Grid } from "@material-ui/core";
 import classNames from "classnames";
 import { height } from "window-size";
 import { withRouter } from "react-router-dom";
+import Countdown from "react-countdown-now";
 const styles = {
   blueCard: {
     backgroundColor: "#006497",
@@ -95,6 +96,24 @@ const styles = {
     verticalAlign: "center"
   }
 };
+
+const timeRenderer = ({ hours, minutes, seconds, completed }) => {
+  if (completed) {
+    // Render a completed state
+    return (
+      <span>
+        {minutes}:{seconds}
+      </span>
+    );
+  } else {
+    // Render a countdown
+    return (
+      <span>
+        {minutes}:{seconds}
+      </span>
+    );
+  }
+};
 class Indicator extends React.Component {
   constructor(props) {
     super(props);
@@ -121,18 +140,22 @@ class Indicator extends React.Component {
                   >
                     <Icon className={classes.icon}>mood</Icon>
                     <s className={classNames(classes.icon, classes.item)}>12</s>
-                    <Icon className={classes.icon}> mood</Icon>
+                    <Icon className={classes.icon}>mood_bad</Icon>
                     <s className={classNames(classes.icon, classes.item)}>12</s>
                   </Grid>
                 </GridItem>
                 <GridItem xs={12} sm={12} md={4}>
                   <p className={classNames(classes.icon, classes.time)}>
-                    Time left: 5.00
+                    Time left:
+                    <Countdown
+                      date={Date.now() + 1000 * 60 * 5}
+                      renderer={timeRenderer}
+                    />
                   </p>
                 </GridItem>
                 <GridItem xs={12} sm={12} md={4}>
                   <Button
-                    color="danger"
+                    color="info"
                     round
                     size="sm"
                     onClick={() => {

@@ -4,9 +4,10 @@ import Person from "@material-ui/icons/Person";
 // import ContentPaste from "@material-ui/icons/ContentPaste";
 import LibraryBooks from "@material-ui/icons/LibraryBooks";
 import BubbleChart from "@material-ui/icons/BubbleChart";
-import LocationOn from "@material-ui/icons/LocationOn";
 import Notifications from "@material-ui/icons/Notifications";
 import Unarchive from "@material-ui/icons/Unarchive";
+import Assessment from "@material-ui/icons/Assessment";
+
 // core components/views
 import DashboardPage from "views/Dashboard/Dashboard.jsx";
 import UserProfile from "views/UserProfile/UserProfile.jsx";
@@ -59,14 +60,14 @@ const dashboardRoutes = [
     path: "/topic",
     sidebarName: "Topic",
     navbarName: "Topic",
-    icon: Person,
+    icon: LibraryBooks,
     component: Vocabulary
   },
   {
     path: "/word",
     sidebarName: "Word",
     navbarName: "Word",
-    icon: Person,
+    icon: LibraryBooks,
     component: WordScreen,
     notShow: true
   },
@@ -80,9 +81,9 @@ const dashboardRoutes = [
   },
   {
     path: "/leaderboard",
-    sidebarName: "Leader board",
-    navbarName: "Leader board",
-    icon: Person,
+    sidebarName: "Leaderboard",
+    navbarName: "Leaderboard",
+    icon: Assessment,
     component: Leaderboard
   },
   { redirect: true, path: "/", to: "/home", navbarName: "Redirect" }

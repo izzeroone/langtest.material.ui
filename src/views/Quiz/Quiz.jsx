@@ -98,6 +98,12 @@ function Quiz(props) {
             </GridItem>
           );
         })}
+        <GridItem xs={12} sm={12} md={12}>
+          <QuestionType6 questions={QuestionDataPart3} />
+        </GridItem>
+        <GridItem xs={12} sm={12} md={12}>
+          <QuestionType6 questions={QuestionDataPart4} />
+        </GridItem>
         {QuestionDataPart5.map((question, id) => {
           return (
             <GridItem key={id} xs={12} sm={12} md={12}>
@@ -105,12 +111,6 @@ function Quiz(props) {
             </GridItem>
           );
         })}
-        <GridItem xs={12} sm={12} md={12}>
-          <QuestionType6 questions={QuestionDataPart3} />
-        </GridItem>
-        <GridItem xs={12} sm={12} md={12}>
-          <QuestionType6 questions={QuestionDataPart4} />
-        </GridItem>
         <GridItem xs={12} sm={12} md={12}>
           <QuestionType6 questions={QuestionDataPart6} />
         </GridItem>

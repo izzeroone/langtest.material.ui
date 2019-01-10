@@ -183,13 +183,13 @@ class ResultScreen extends React.Component {
                     </div>
                     <div className={classes.clearFloat}>
                       <s className={classes.cardSmallInfo}>CORRECT QUESTION</s>
-                      <s className={classes.correctQuestionText}>10</s>
+                      <s className={classes.correctQuestionText}>5</s>
                     </div>
                     <div className={classes.clearFloat}>
                       <s className={classes.cardSmallInfo}>
                         INCORRECT QUESTION
                       </s>
-                      <s className={classes.incorrectQuestionText}>2</s>
+                      <s className={classes.incorrectQuestionText}>5</s>
                     </div>
                   </Card>
                 </GridItem>

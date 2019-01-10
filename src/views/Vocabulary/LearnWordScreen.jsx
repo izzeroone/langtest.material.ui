@@ -180,6 +180,11 @@ class LearnWordScreen extends React.Component {
   state = {
     value: 0
   };
+  componentDidMount() {
+    this._clockCall = setInterval(() => {
+      this.setState({ value: (this.state.value + 10) % 100});
+    }, 1000);
+  }
   handleChange = (event, value) => {
     this.setState({ value });
   };
@@ -201,7 +206,7 @@ class LearnWordScreen extends React.Component {
         <div>
           <CircularProgressbar
             className={classes.progress}
-            percentage={50}
+            percentage={this.state.value}
             initialAnimation
             background
             styles={{

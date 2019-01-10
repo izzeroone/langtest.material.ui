@@ -138,7 +138,7 @@ class WordCard extends React.Component {
                   justify="center"
                   alignItems="center"
                 >
-                  <Icon className={classes.icon}>mood</Icon>
+                  <Icon className={classes.icon}>volume_up</Icon>
                   <span className={classes.pronoun}>[{word.pronoun}]</span>
                 </Grid>
               </p>
